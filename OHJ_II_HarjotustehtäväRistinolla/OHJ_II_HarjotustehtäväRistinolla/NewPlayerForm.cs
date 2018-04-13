@@ -45,21 +45,17 @@ namespace OHJ_II_HarjotustehtäväRistinolla
 
         public void btnNewPlayerSaveInfo_Click(object sender, EventArgs e)
         {
-            this.txtNewPlayerFirstName.Text = this.person.firstName;
-            this.txtNewPlayerLastName.Text = this.person.lastName;
-            this.dtpickNewPlayerDateOfBirth.Value = this.person.dateOfBirth;
-          
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-
-            saveFileDialog1.InitialDirectory = @"c:\temp\";
-            saveFileDialog1.Filter = "rtf files (*.rtf)|*.rtf";
-            saveFileDialog1.FilterIndex = 1;
-            saveFileDialog1.RestoreDirectory = true;
-            FileStream fs = new FileStream("DataFile.dat", FileMode.Create);
+            this.person.firstName = this.txtNewPlayerFirstName.Text;
+            this.person.lastName = this.txtNewPlayerLastName.Text;
+            this.person.dateOfBirth = this.dtpickNewPlayerDateOfBirth.Value.Date;
+            personIASGameScore.personScores = this.person;
+            string player = this.txtNewPlayerFirstName.Text + txtNewPlayerLastName.Text;
+            // serialisoidaan tiedot binäärimuotoon
             IFormatter formatter = new BinaryFormatter();
-           
-            formatter.Serialize(fs, TÄHÄN);
-            
+            Stream streamSave = new FileStream($"c:\\temp\\{player}.dat", FileMode.Create, FileAccess.Write, FileShare.None);
+            formatter.Serialize(streamSave, this.personIASGameScore);
+            streamSave.Close();
+
         }
     }
 }

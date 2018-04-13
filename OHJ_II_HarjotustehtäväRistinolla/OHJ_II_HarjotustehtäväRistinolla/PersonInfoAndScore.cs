@@ -8,16 +8,20 @@ namespace OHJ_II_HarjotustehtäväRistinolla
 {
     class PersonInfoAndScore
     {
-        public struct PersonIAscore
+        [Serializable]
+        public struct Person
         {
-            public static string firstName, lastName;
-            public static DateTime dateOfBirth;
+            public string firstName, lastName;
+            public DateTime dateOfBirth;
 
-           public struct GameScores
-            {
-                public static float wins, losses, draws;
-                public static float totalGamePlayDuration;
-            }
+          
+        }
+        [Serializable]
+        public struct GameScores
+        {
+            public Person personScores;
+            public float wins, losses, draws;
+            public float totalGamePlayDuration;
         }
     }
 }
