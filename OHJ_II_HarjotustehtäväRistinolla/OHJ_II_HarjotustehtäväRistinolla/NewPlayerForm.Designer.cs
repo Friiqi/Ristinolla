@@ -75,6 +75,7 @@
             this.btnNewPlayerEmpty.TabIndex = 4;
             this.btnNewPlayerEmpty.Text = "Tyhjennä";
             this.btnNewPlayerEmpty.UseVisualStyleBackColor = true;
+            this.btnNewPlayerEmpty.Click += new System.EventHandler(this.btnNewPlayerEmpty_Click);
             // 
             // btnNewPlayerSaveInfo
             // 
@@ -84,6 +85,7 @@
             this.btnNewPlayerSaveInfo.TabIndex = 5;
             this.btnNewPlayerSaveInfo.Text = "Tallenna";
             this.btnNewPlayerSaveInfo.UseVisualStyleBackColor = true;
+            this.btnNewPlayerSaveInfo.Click += new System.EventHandler(this.btnNewPlayerSaveInfo_Click);
             // 
             // btnNewPlayerReturnToMainForm
             // 
