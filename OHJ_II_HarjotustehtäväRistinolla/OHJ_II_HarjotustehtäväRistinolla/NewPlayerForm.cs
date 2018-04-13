@@ -15,11 +15,13 @@ namespace OHJ_II_HarjotustehtäväRistinolla
 {
     public partial class NewPlayerForm : Form
     {
+        public string player;
         PersonInfoAndScore.Person person = new PersonInfoAndScore.Person();
         PersonInfoAndScore.GameScores personIASGameScore = new PersonInfoAndScore.GameScores();
         public NewPlayerForm()
         {
             InitializeComponent();
+            
         }
 
         private void btnNewPlayerReturnToMainForm_Click(object sender, EventArgs e)
@@ -49,12 +51,15 @@ namespace OHJ_II_HarjotustehtäväRistinolla
             this.person.lastName = this.txtNewPlayerLastName.Text;
             this.person.dateOfBirth = this.dtpickNewPlayerDateOfBirth.Value.Date;
             personIASGameScore.personScores = this.person;
-            string player = this.txtNewPlayerFirstName.Text + txtNewPlayerLastName.Text;
+            player = this.txtNewPlayerFirstName.Text + txtNewPlayerLastName.Text;
+            
             // serialisoidaan tiedot binäärimuotoon
             IFormatter formatter = new BinaryFormatter();
-            Stream streamSave = new FileStream($"c:\\temp\\{player}.dat", FileMode.Create, FileAccess.Write, FileShare.None);
+            Stream streamSave = new FileStream($"c:\\temp\\savedfiles\\{player}.dat", FileMode.Create, FileAccess.Write, FileShare.None);
             formatter.Serialize(streamSave, this.personIASGameScore);
             streamSave.Close();
+            
+            this.Close();
 
         }
     }

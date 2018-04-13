@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.lstBoxPvE = new System.Windows.Forms.ListBox();
             this.btnCreateNerPlayer = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.lblChooseExsitingPlayerInPvE = new System.Windows.Forms.Label();
@@ -47,14 +47,14 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Sinä vastaan tietokone! Kumpi onkaan parempi pelaamaan?";
             // 
-            // listBox1
+            // lstBoxPvE
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(34, 144);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(164, 17);
-            this.listBox1.TabIndex = 1;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.lstBoxPvE.FormattingEnabled = true;
+            this.lstBoxPvE.Location = new System.Drawing.Point(34, 144);
+            this.lstBoxPvE.Name = "lstBoxPvE";
+            this.lstBoxPvE.Size = new System.Drawing.Size(164, 17);
+            this.lstBoxPvE.TabIndex = 1;
+            this.lstBoxPvE.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // btnCreateNerPlayer
             // 
@@ -122,7 +122,7 @@
             this.Controls.Add(this.lblChooseExsitingPlayerInPvE);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnCreateNerPlayer);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.lstBoxPvE);
             this.Controls.Add(this.label1);
             this.Name = "PvEForm";
             this.Text = "Pelaaja vs. tietokone";
@@ -134,7 +134,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox lstBoxPvE;
         private System.Windows.Forms.Button btnCreateNerPlayer;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblChooseExsitingPlayerInPvE;
