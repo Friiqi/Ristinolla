@@ -12,9 +12,25 @@ namespace OHJ_II_HarjotustehtäväRistinolla
 {
     public partial class PvPForm : Form
     {
+        
         public PvPForm()
         {
             InitializeComponent();
+        }
+
+        private void btnReturnToMainForm_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            MainForm openMain = new MainForm();
+            openMain.Show();
+        }
+
+        public void btnCreateNerPlayer_Click(object sender, EventArgs e)
+        {
+           
+            
+            NewPlayerForm newPlayer = new NewPlayerForm();
+            newPlayer.Show();
         }
     }
 }

@@ -109,6 +109,7 @@
             this.btnReturnToMainForm.TabIndex = 7;
             this.btnReturnToMainForm.Text = "Alkuun";
             this.btnReturnToMainForm.UseVisualStyleBackColor = true;
+            this.btnReturnToMainForm.Click += new System.EventHandler(this.btnReturnToMainForm_Click);
             // 
             // PvEForm
             // 

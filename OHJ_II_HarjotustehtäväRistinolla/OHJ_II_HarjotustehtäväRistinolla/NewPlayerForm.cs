@@ -12,9 +12,23 @@ namespace OHJ_II_HarjotustehtäväRistinolla
 {
     public partial class NewPlayerForm : Form
     {
+       
         public NewPlayerForm()
         {
             InitializeComponent();
+        }
+
+        private void btnNewPlayerReturnToMainForm_Click(object sender, EventArgs e)
+        {
+            Close();
+            MainForm openMain = new MainForm();
+            openMain.Show();
+        }
+
+        private void btnBackFromNewPlayerForm_Click(object sender, EventArgs e)
+        {
+            this.Close();
+           
         }
     }
 }

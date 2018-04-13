@@ -21,5 +21,12 @@ namespace OHJ_II_HarjotustehtäväRistinolla
         {
 
         }
+
+        private void btnReturnToMainForm_Click(object sender, EventArgs e)
+        {
+            Close();
+            MainForm openMain = new MainForm();
+            openMain.Show();
+        }
     }
 }

@@ -37,6 +37,7 @@
             this.txtNewPlayerFirstName = new System.Windows.Forms.TextBox();
             this.txtNewPlayerLastName = new System.Windows.Forms.TextBox();
             this.dtpickNewPlayerDateOfBirth = new System.Windows.Forms.DateTimePicker();
+            this.btnBackFromNewPlayerForm = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblNewPlayerFirstName
@@ -90,8 +91,9 @@
             this.btnNewPlayerReturnToMainForm.Name = "btnNewPlayerReturnToMainForm";
             this.btnNewPlayerReturnToMainForm.Size = new System.Drawing.Size(98, 23);
             this.btnNewPlayerReturnToMainForm.TabIndex = 6;
-            this.btnNewPlayerReturnToMainForm.Text = "Palaa alkuun";
+            this.btnNewPlayerReturnToMainForm.Text = "Alkuvalikkoon";
             this.btnNewPlayerReturnToMainForm.UseVisualStyleBackColor = true;
+            this.btnNewPlayerReturnToMainForm.Click += new System.EventHandler(this.btnNewPlayerReturnToMainForm_Click);
             // 
             // txtNewPlayerFirstName
             // 
@@ -114,11 +116,22 @@
             this.dtpickNewPlayerDateOfBirth.Size = new System.Drawing.Size(200, 20);
             this.dtpickNewPlayerDateOfBirth.TabIndex = 10;
             // 
+            // btnBackFromNewPlayerForm
+            // 
+            this.btnBackFromNewPlayerForm.Location = new System.Drawing.Point(292, 210);
+            this.btnBackFromNewPlayerForm.Name = "btnBackFromNewPlayerForm";
+            this.btnBackFromNewPlayerForm.Size = new System.Drawing.Size(98, 23);
+            this.btnBackFromNewPlayerForm.TabIndex = 11;
+            this.btnBackFromNewPlayerForm.Text = "Takaisin";
+            this.btnBackFromNewPlayerForm.UseVisualStyleBackColor = true;
+            this.btnBackFromNewPlayerForm.Click += new System.EventHandler(this.btnBackFromNewPlayerForm_Click);
+            // 
             // NewPlayerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(519, 245);
+            this.Controls.Add(this.btnBackFromNewPlayerForm);
             this.Controls.Add(this.dtpickNewPlayerDateOfBirth);
             this.Controls.Add(this.txtNewPlayerLastName);
             this.Controls.Add(this.txtNewPlayerFirstName);
@@ -145,5 +158,6 @@
         private System.Windows.Forms.TextBox txtNewPlayerFirstName;
         private System.Windows.Forms.TextBox txtNewPlayerLastName;
         private System.Windows.Forms.DateTimePicker dtpickNewPlayerDateOfBirth;
+        private System.Windows.Forms.Button btnBackFromNewPlayerForm;
     }
 }

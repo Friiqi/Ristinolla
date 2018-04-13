@@ -46,6 +46,7 @@
             this.btnReturnToMainForm.TabIndex = 15;
             this.btnReturnToMainForm.Text = "Alkuun";
             this.btnReturnToMainForm.UseVisualStyleBackColor = true;
+            this.btnReturnToMainForm.Click += new System.EventHandler(this.btnReturnToMainForm_Click);
             // 
             // button2
             // 
@@ -91,6 +92,7 @@
             this.btnCreateNerPlayer.TabIndex = 10;
             this.btnCreateNerPlayer.Text = "Uusi";
             this.btnCreateNerPlayer.UseVisualStyleBackColor = true;
+            this.btnCreateNerPlayer.Click += new System.EventHandler(this.btnCreateNerPlayer_Click);
             // 
             // listBox1
             // 

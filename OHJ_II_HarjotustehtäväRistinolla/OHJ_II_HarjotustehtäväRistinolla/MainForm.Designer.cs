@@ -54,21 +54,23 @@
             // 
             // btnMainFormChosePlayer
             // 
-            this.btnMainFormChosePlayer.Location = new System.Drawing.Point(19, 94);
+            this.btnMainFormChosePlayer.Location = new System.Drawing.Point(55, 94);
             this.btnMainFormChosePlayer.Name = "btnMainFormChosePlayer";
             this.btnMainFormChosePlayer.Size = new System.Drawing.Size(75, 23);
             this.btnMainFormChosePlayer.TabIndex = 2;
             this.btnMainFormChosePlayer.Text = "Pelaajaa";
             this.btnMainFormChosePlayer.UseVisualStyleBackColor = true;
+            this.btnMainFormChosePlayer.Click += new System.EventHandler(this.btnMainFormChosePlayer_Click);
             // 
             // btnMainFormChoseComputer
             // 
-            this.btnMainFormChoseComputer.Location = new System.Drawing.Point(128, 94);
+            this.btnMainFormChoseComputer.Location = new System.Drawing.Point(150, 94);
             this.btnMainFormChoseComputer.Name = "btnMainFormChoseComputer";
             this.btnMainFormChoseComputer.Size = new System.Drawing.Size(75, 23);
             this.btnMainFormChoseComputer.TabIndex = 3;
             this.btnMainFormChoseComputer.Text = "Tietokonetta";
             this.btnMainFormChoseComputer.UseVisualStyleBackColor = true;
+            this.btnMainFormChoseComputer.Click += new System.EventHandler(this.btnMainFormChoseComputer_Click);
             // 
             // MainForm
             // 
