@@ -16,7 +16,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
             public string firstName, lastName;
             public DateTime dateOfBirth;
 
-            public Guid id { get; set; }
+            public Guid Id { get; set; }
             public string Displayname
             {
                 get

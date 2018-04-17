@@ -20,6 +20,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //part of the attempt to get list/combobox to show other name for item than filepath
             this.lstBoxPvE.DisplayMember = "DisplayName";
             this.lstBoxPvE.ValueMember = "Id";
             this.lstBoxPvE.DataSource = this.listboxStruct;

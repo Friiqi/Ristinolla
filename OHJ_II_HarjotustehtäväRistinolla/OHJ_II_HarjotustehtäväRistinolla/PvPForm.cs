@@ -18,27 +18,26 @@ namespace OHJ_II_HarjotustehtäväRistinolla
         {
             
             InitializeComponent();
-            
+            // the code under here is for trying to get listbox/combobox to display something other than the filepath and filename for the stored .dat files, work in progress, maybe need deserialization first applied?
                         this.cmbPvPForm.ValueMember = "Id";
                        this.cmbPvPForm.DisplayMember = "Displayname";
                         this.cmbPvPForm.DataSource = this.lstBind;
 
-                        
-            
-            bool exists = System.IO.Directory.Exists(@"c:\temp\savedfiles");
-            if (!exists)
-            {
-                System.IO.Directory.CreateDirectory(@"c:\temp\savedfiles");
-            }
-
             string[] files = System.IO.Directory.GetFiles(@"C:\temp\savedfiles");
-             
-           listBox1.Items.AddRange(files);
-                
-        
+            this.listBox1.DisplayMember = "Displayname";
+            this.listBox1.ValueMember = "Id";
+            listBox1.Items.AddRange(files);
+
+           
+            this.listBox1.DataSource = this.lstBind;
+            
+
 
           
-           
+
+
+
+
         }
 
         private void btnReturnToMainForm_Click(object sender, EventArgs e)
@@ -60,6 +59,14 @@ namespace OHJ_II_HarjotustehtäväRistinolla
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            this.Close();
+            DrawForm newDraw = new DrawForm();
+            newDraw.Show();
         }
     }
 }

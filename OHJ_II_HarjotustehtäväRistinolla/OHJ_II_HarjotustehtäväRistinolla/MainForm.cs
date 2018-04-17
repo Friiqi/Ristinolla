@@ -15,6 +15,12 @@ namespace OHJ_II_HarjotustehtäväRistinolla
         public MainForm()
         {
             InitializeComponent();
+            //check if a folder for .dat file storing exists, if not, make one.
+            bool exists = System.IO.Directory.Exists(@"c:\temp\savedfiles");
+            if (!exists)
+            {
+                System.IO.Directory.CreateDirectory(@"c:\temp\savedfiles");
+            }
         }
 
         private void btnMainFormChosePlayer_Click(object sender, EventArgs e)

@@ -11,3 +11,4 @@ C:\Users\Reiska\Documents\GitHub\Ristinolla\OHJ_II_HarjotustehtäväRistinolla\O
 C:\Users\Reiska\Documents\GitHub\Ristinolla\OHJ_II_HarjotustehtäväRistinolla\OHJ_II_HarjotustehtäväRistinolla\obj\Debug\OHJ_II_HarjotustehtäväRistinolla.csproj.CoreCompileInputs.cache
 C:\Users\Reiska\Documents\GitHub\Ristinolla\OHJ_II_HarjotustehtäväRistinolla\OHJ_II_HarjotustehtäväRistinolla\obj\Debug\OHJ_II_HarjotustehtäväRistinolla.exe
 C:\Users\Reiska\Documents\GitHub\Ristinolla\OHJ_II_HarjotustehtäväRistinolla\OHJ_II_HarjotustehtäväRistinolla\obj\Debug\OHJ_II_HarjotustehtäväRistinolla.pdb
+C:\Users\Reiska\Documents\GitHub\Ristinolla\OHJ_II_HarjotustehtäväRistinolla\OHJ_II_HarjotustehtäväRistinolla\obj\Debug\OHJ_II_HarjotustehtäväRistinolla.DrawForm.resources
