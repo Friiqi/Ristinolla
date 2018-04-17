@@ -55,6 +55,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                 Pen blackPen = new Pen(Color.Black, 5);
                 drawX.DrawLine(blackPen, 100, 70, 300, 170);
                 drawX.DrawLine(blackPen, 300, 70, 100, 170);
+              
                 blackPen.Dispose();
                 drawX.Dispose();
                 
@@ -142,6 +143,106 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                 drawX.DrawLine(blackPen, 700, 270, 500, 370);
                 blackPen.Dispose();
                 drawX.Dispose();
+
+            }
+
+            if ((mouseCurrent.X > 100) && (mouseCurrent.X < 300) && (mouseCurrent.Y > 70) && (mouseCurrent.Y < 170))
+            {
+                Graphics drawEllipse;
+                drawEllipse = this.CreateGraphics();
+                Pen blackPen = new Pen(Color.Black, 5);
+                drawEllipse.DrawEllipse(blackPen, 150, 70, 100, 100);
+                
+                blackPen.Dispose();
+                drawEllipse.Dispose();
+
+            }
+            if ((mouseCurrent.X > 300) && (mouseCurrent.X < 500) && (mouseCurrent.Y > 70) && (mouseCurrent.Y < 170))
+            {
+                Graphics drawEllipse;
+                drawEllipse = this.CreateGraphics();
+                Pen blackPen = new Pen(Color.Black, 5);
+                drawEllipse.DrawEllipse(blackPen, 350, 70, 100, 100);
+
+                blackPen.Dispose();
+                drawEllipse.Dispose();
+
+            }
+            if ((mouseCurrent.X > 500) && (mouseCurrent.X < 700) && (mouseCurrent.Y > 70) && (mouseCurrent.Y < 170))
+            {
+                Graphics drawEllipse;
+                drawEllipse = this.CreateGraphics();
+                Pen blackPen = new Pen(Color.Black, 5);
+                drawEllipse.DrawEllipse(blackPen, 550, 70, 100, 100);
+
+                blackPen.Dispose();
+                drawEllipse.Dispose();
+
+            }
+            if ((mouseCurrent.X > 100) && (mouseCurrent.X < 300) && (mouseCurrent.Y > 170) && (mouseCurrent.Y < 270))
+            {
+                Graphics drawEllipse;
+                drawEllipse = this.CreateGraphics();
+                Pen blackPen = new Pen(Color.Black, 5);
+                drawEllipse.DrawEllipse(blackPen, 150, 170, 100, 100);
+
+                blackPen.Dispose();
+                drawEllipse.Dispose();
+
+            }
+            if ((mouseCurrent.X > 300) && (mouseCurrent.X < 500) && (mouseCurrent.Y > 170) && (mouseCurrent.Y < 270))
+            {
+                Graphics drawEllipse;
+                drawEllipse = this.CreateGraphics();
+                Pen blackPen = new Pen(Color.Black, 5);
+                drawEllipse.DrawEllipse(blackPen, 350, 170, 100, 100);
+
+                blackPen.Dispose();
+                drawEllipse.Dispose();
+
+            }
+            if ((mouseCurrent.X > 500) && (mouseCurrent.X < 700) && (mouseCurrent.Y > 170) && (mouseCurrent.Y < 270))
+            {
+                Graphics drawEllipse;
+                drawEllipse = this.CreateGraphics();
+                Pen blackPen = new Pen(Color.Black, 5);
+                drawEllipse.DrawEllipse(blackPen, 550, 170, 100, 100);
+
+                blackPen.Dispose();
+                drawEllipse.Dispose();
+
+            }
+            if ((mouseCurrent.X > 100) && (mouseCurrent.X < 300) && (mouseCurrent.Y > 270) && (mouseCurrent.Y < 370))
+            {
+                Graphics drawEllipse;
+                drawEllipse = this.CreateGraphics();
+                Pen blackPen = new Pen(Color.Black, 5);
+                drawEllipse.DrawEllipse(blackPen, 150, 270, 100, 100);
+
+                blackPen.Dispose();
+                drawEllipse.Dispose();
+
+            }
+            if ((mouseCurrent.X > 300) && (mouseCurrent.X < 500) && (mouseCurrent.Y > 270) && (mouseCurrent.Y < 370))
+            {
+                Graphics drawEllipse;
+                drawEllipse = this.CreateGraphics();
+                Pen blackPen = new Pen(Color.Black, 5);
+                drawEllipse.DrawEllipse(blackPen, 350, 270, 100, 100);
+
+                blackPen.Dispose();
+                drawEllipse.Dispose();
+
+            }
+            if ((mouseCurrent.X > 500) && (mouseCurrent.X < 700) && (mouseCurrent.Y > 270) && (mouseCurrent.Y < 370))
+            {
+                Graphics drawEllipse;
+                drawEllipse = this.CreateGraphics();
+                Pen blackPen = new Pen(Color.Black, 5);
+                drawEllipse.DrawEllipse(blackPen, 550, 270, 100, 100);
+
+                blackPen.Dispose();
+                drawEllipse.Dispose();
 
             }
         }
