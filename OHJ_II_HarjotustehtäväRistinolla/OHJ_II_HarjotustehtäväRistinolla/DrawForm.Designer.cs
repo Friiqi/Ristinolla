@@ -36,6 +36,7 @@
             this.lblPlayer2FullName = new System.Windows.Forms.Label();
             this.lblPlayer2TotalPlayTime = new System.Windows.Forms.Label();
             this.lblPlayer1TotalPlayTime = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // lblPlayer1FullName
@@ -46,7 +47,6 @@
             this.lblPlayer1FullName.Size = new System.Drawing.Size(66, 13);
             this.lblPlayer1FullName.TabIndex = 0;
             this.lblPlayer1FullName.Text = "Pelaajannimi";
-            
             // 
             // lblPlayer1TotalWins
             // 
@@ -111,6 +111,10 @@
             this.lblPlayer1TotalPlayTime.TabIndex = 7;
             this.lblPlayer1TotalPlayTime.Text = "totalplaytime";
             // 
+            // backgroundWorker1
+            // 
+            //this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            // 
             // DrawForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -144,5 +148,6 @@
         private System.Windows.Forms.Label lblPlayer2FullName;
         private System.Windows.Forms.Label lblPlayer2TotalPlayTime;
         private System.Windows.Forms.Label lblPlayer1TotalPlayTime;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
