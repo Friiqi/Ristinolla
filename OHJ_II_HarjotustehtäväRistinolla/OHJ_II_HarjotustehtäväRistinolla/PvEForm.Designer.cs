@@ -91,6 +91,7 @@
             this.btnStartGame.TabIndex = 5;
             this.btnStartGame.Text = "Aloita peli!";
             this.btnStartGame.UseVisualStyleBackColor = true;
+            this.btnStartGame.Click += new System.EventHandler(this.btnStartGame_Click);
             // 
             // button2
             // 

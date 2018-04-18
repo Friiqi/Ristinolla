@@ -16,6 +16,8 @@ namespace OHJ_II_HarjotustehtäväRistinolla
         public PvEForm()
         {
             InitializeComponent();
+            
+
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -31,6 +33,17 @@ namespace OHJ_II_HarjotustehtäväRistinolla
             Close();
             MainForm openMain = new MainForm();
             openMain.Show();
+        }
+
+        private void btnStartGame_Click(object sender, EventArgs e)
+        {
+         
+            DrawForm newDraw = new DrawForm();
+            //tells DrawForm that player chose to play against computer.
+            newDraw.computerplayer = true;
+            newDraw.Show();
+            this.Close();
+
         }
     }
 }

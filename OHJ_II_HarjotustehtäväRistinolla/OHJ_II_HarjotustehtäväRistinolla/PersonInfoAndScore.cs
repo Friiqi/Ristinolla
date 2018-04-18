@@ -9,7 +9,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
     class PersonInfoAndScore
     {
 
-
+        
         [Serializable]
         public struct Person
         {

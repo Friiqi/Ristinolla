@@ -30,14 +30,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
 
            
             this.listBox1.DataSource = this.lstBind;
-            
-
-
-          
-
-
-
-
+   
         }
 
         private void btnReturnToMainForm_Click(object sender, EventArgs e)
@@ -55,8 +48,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
             newPlayer.Show();
         }
 
-     
-
+ 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
         }
