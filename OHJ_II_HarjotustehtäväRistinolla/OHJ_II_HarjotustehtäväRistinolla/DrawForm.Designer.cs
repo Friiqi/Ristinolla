@@ -111,10 +111,6 @@
             this.lblPlayer1TotalPlayTime.TabIndex = 7;
             this.lblPlayer1TotalPlayTime.Text = "totalplaytime";
             // 
-            // backgroundWorker1
-            // 
-            //this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-            // 
             // DrawForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -133,6 +129,7 @@
             this.Load += new System.EventHandler(this.DrawForm_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.DrawForm_Paint);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DrawForm_MouseClick);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DrawForm_MouseMove);
             this.ResumeLayout(false);
             this.PerformLayout();
 

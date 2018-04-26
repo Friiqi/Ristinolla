@@ -12,8 +12,8 @@ namespace OHJ_II_HarjotustehtäväRistinolla
 {
     public partial class PvPForm : Form
     {
-
-        private BindingList<GameScores> lstBind = new BindingList<GameScores>();
+        //what to put here to be able to get the listbox populated?
+       // private BindingList<GameScores> lstBind = new BindingList<GameScores>();
         public PvPForm()
         {
             
@@ -21,15 +21,16 @@ namespace OHJ_II_HarjotustehtäväRistinolla
             // the code under here is for trying to get listbox/combobox to display something other than the filepath and filename for the stored .dat files, work in progress, maybe need deserialization first applied?
                         this.cmbPvPForm.ValueMember = "Id";
                        this.cmbPvPForm.DisplayMember = "Displayname";
-                        this.cmbPvPForm.DataSource = this.lstBind;
+                     //   this.cmbPvPForm.DataSource = this.lstBind;
+            string savePath = @"c:\temp\savedfiles\savedplayerinfo.json";
+            var existingPlayers = GameScores.DeserializeList(savePath);
 
-            string[] files = System.IO.Directory.GetFiles(@"C:\temp\savedfiles");
-            this.listBox1.DisplayMember = "Displayname";
-            this.listBox1.ValueMember = "Id";
-            listBox1.Items.AddRange(files);
 
-           
-            this.listBox1.DataSource = this.lstBind;
+            listBox1.DataSource = existingPlayers;
+            listBox1.DisplayMember = "Displayname";
+            //this.listBox1.ValueMember = "Id";
+
+          // this.listBox1.DataSource = this.lstBind;
    
         }
 
@@ -55,7 +56,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            //add here the part where you access drawform-forms computerplayer bool and set it to true!
             this.Close();
             DrawForm newDraw = new DrawForm();
             newDraw.Show();
