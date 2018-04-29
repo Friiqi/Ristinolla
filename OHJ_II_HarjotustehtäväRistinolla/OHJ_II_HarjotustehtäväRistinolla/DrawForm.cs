@@ -207,6 +207,11 @@ namespace OHJ_II_HarjotustehtäväRistinolla
 
             }
 
+            else if (oneOne && oneTwo && oneThree && twoOne && twoTwo & twoThree && threeOne && threeTwo & threeThree)
+            {
+                MessageBox.Show("Draw!");
+            }
+
             // checks if it is player 1's turn (player one is always X). If it is, it draws X where he clicks and after that playerOneTurn is set to false. 
 
             else if (playerOneTurn)
@@ -299,7 +304,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                 }
                 else
                 {
-                    MessageBox.Show("did not fall into any mouseclick check for drawing.");
+                    MessageBox.Show("did not fall into any mouseclick check for drawing X.");
                 }
                
             }
@@ -398,7 +403,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                 else
                 {
                     AIGamePlay();
-                    MessageBox.Show("Playertwo side something is wrong");
+                    
                  
                 }
                 
@@ -456,7 +461,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
         private void AIGamePlay()
         {
             Random rnd = new Random();
-           
+            bool markDrawed = false;
            
             do
             {
@@ -470,6 +475,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                             oneOne = true;
                             oneOneO = true;
                             playerOneTurn = true;
+                            markDrawed = true;
                             break;
                         }
                         else
@@ -482,6 +488,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                             oneTwo = true;
                             oneTwoO = true;
                             playerOneTurn = true;
+                            markDrawed = true;
                             break;
                         }
                         else
@@ -494,6 +501,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                             oneTwo = true;
                             oneTwoO = true;
                             playerOneTurn = true;
+                            markDrawed = true;
                             break;
                         }
                         else
@@ -506,6 +514,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                             oneTwo = true;
                             oneTwoO = true;
                             playerOneTurn = true;
+                            markDrawed = true;
                             break;
                         }
                         else
@@ -518,6 +527,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                             oneTwo = true;
                             oneTwoO = true;
                             playerOneTurn = true;
+                            markDrawed = true;
                             break;
                         }
                         else
@@ -530,6 +540,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                             oneTwo = true;
                             oneTwoO = true;
                             playerOneTurn = true;
+                            markDrawed = true;
                             break;
                         }
                         else
@@ -542,6 +553,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                             oneTwo = true;
                             oneTwoO = true;
                             playerOneTurn = true;
+                            markDrawed = true;
                             break;
                         }
                         else
@@ -554,6 +566,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                             oneTwo = true;
                             oneTwoO = true;
                             playerOneTurn = true;
+                            markDrawed = true;
                             break;
                         }
                         else
@@ -566,6 +579,8 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                             oneTwo = true;
                             oneTwoO = true;
                             playerOneTurn = true;
+                            markDrawed = true;
+
                             break;
                         }
                         else
@@ -574,7 +589,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                 } 
                    
                 
-            } while (!wasTaken);
+            } while (wasTaken || !markDrawed );
             wasTaken = false;
             
             AIDraw();
@@ -592,6 +607,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
             DrawgameField();
 
         }
+
         //for drawing O mark in inputted coordinates
             private void DrawEllipse(int x, int y)
             {

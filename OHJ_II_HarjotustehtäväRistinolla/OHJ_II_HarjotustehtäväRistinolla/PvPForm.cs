@@ -18,7 +18,8 @@ namespace OHJ_II_HarjotustehtäväRistinolla
         {
             
             InitializeComponent();
-            // the code under here is for trying to get listbox/combobox to display something other than the filepath and filename for the stored .dat files, work in progress, maybe need deserialization first applied?
+            /*
+            // the code under here is for trying to get listbox/combobox to display something other than the filepath and filename for the stored .json file.
                         this.cmbPvPForm.ValueMember = "Id";
                        this.cmbPvPForm.DisplayMember = "Displayname";
                      //   this.cmbPvPForm.DataSource = this.lstBind;
@@ -31,7 +32,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
             //this.listBox1.ValueMember = "Id";
 
           // this.listBox1.DataSource = this.lstBind;
-   
+   */
         }
 
         private void btnReturnToMainForm_Click(object sender, EventArgs e)
