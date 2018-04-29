@@ -16,6 +16,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
 
         public bool computerplayer = false;
         private bool playerOneTurn = true;
+        //are the 2 following needed anywhere anymore?
         private bool playeOneClicked = false;
         private bool playerTwoClicked = false;
         //these tell if the spot is taken or not
@@ -633,7 +634,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
 
 
             }
-        //draws the gameboard. does not do this. why.
+        //draws the gameboard.
             private void DrawgameField()
             {
 

@@ -37,6 +37,8 @@
             this.lblPlayer2TotalPlayTime = new System.Windows.Forms.Label();
             this.lblPlayer1TotalPlayTime = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.lblWhoseTurn = new System.Windows.Forms.Label();
+            this.lblActivePlayerName = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblPlayer1FullName
@@ -111,11 +113,31 @@
             this.lblPlayer1TotalPlayTime.TabIndex = 7;
             this.lblPlayer1TotalPlayTime.Text = "totalplaytime";
             // 
+            // lblWhoseTurn
+            // 
+            this.lblWhoseTurn.AutoSize = true;
+            this.lblWhoseTurn.Location = new System.Drawing.Point(264, 9);
+            this.lblWhoseTurn.Name = "lblWhoseTurn";
+            this.lblWhoseTurn.Size = new System.Drawing.Size(54, 13);
+            this.lblWhoseTurn.TabIndex = 8;
+            this.lblWhoseTurn.Text = "Pelivuoro:";
+            // 
+            // lblActivePlayerName
+            // 
+            this.lblActivePlayerName.AutoSize = true;
+            this.lblActivePlayerName.Location = new System.Drawing.Point(363, 9);
+            this.lblActivePlayerName.Name = "lblActivePlayerName";
+            this.lblActivePlayerName.Size = new System.Drawing.Size(47, 13);
+            this.lblActivePlayerName.TabIndex = 9;
+            this.lblActivePlayerName.Text = "[pelaaja]";
+            // 
             // DrawForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblActivePlayerName);
+            this.Controls.Add(this.lblWhoseTurn);
             this.Controls.Add(this.lblPlayer1TotalPlayTime);
             this.Controls.Add(this.lblPlayer2TotalPlayTime);
             this.Controls.Add(this.lblPlayer2TotalDraws);
@@ -146,5 +168,7 @@
         private System.Windows.Forms.Label lblPlayer2TotalPlayTime;
         private System.Windows.Forms.Label lblPlayer1TotalPlayTime;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Label lblWhoseTurn;
+        private System.Windows.Forms.Label lblActivePlayerName;
     }
 }
