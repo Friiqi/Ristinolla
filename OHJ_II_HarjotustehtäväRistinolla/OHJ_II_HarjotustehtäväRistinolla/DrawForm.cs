@@ -16,14 +16,12 @@ namespace OHJ_II_HarjotustehtäväRistinolla
     {
 
         // is 2nd player a computer
-        public bool computerplayer = false;
+        public bool computerplayer;
         public GameScores playerOne;
         public GameScores playerTwo;
+        public bool hasGameEnded;
         //checks if it is player one's turn.
         private bool playerOneTurn = true;
-        //are the 2 following needed anywhere anymore?
-        private bool playeOneClicked = false;
-        private bool playerTwoClicked = false;
         //these tell if the spot is taken or not
         private bool oneOne = false;
         private bool oneTwo = false;
@@ -56,98 +54,55 @@ namespace OHJ_II_HarjotustehtäväRistinolla
         private bool threeTwoO = false;
         private bool threeThreeO = false;
         private DateTime gameStarted, gameEnded;
-        // this tells where to draw, 11 = first row, first rectangle, 22 is second row second rectangle etc.
+        private Random rnd = new Random();
 
-        //for checking AIGamePlay() switch-case loop
-        bool wasTaken = false;
-        Stopwatch playerOneTimer = new Stopwatch();
+
         public DrawForm()
         {
             InitializeComponent();
             gameStarted = DateTime.Now;
-            
+
+
         }
         public void DrawForm_MouseClick(object sender, MouseEventArgs e)
         {
             Point mouseCurrent = PointToClient(Cursor.Position);
-            //if wanna fiddle with player-sensitive timers.
-            
-/*
-            if (playerOneTurn)
-            {
 
-                playerOneTimer.Start();
-                lblPlayer1TotalPlayTime.Text = playerOneTimer.Elapsed.ToString();
-            }
-
-            else if (!playerOneTurn)
-            {
-                playerOneTimer.Stop();
-            }
- */
             CheckPlayStuff(mouseCurrent);
-          
-
         }
 
 
-
         // checks if either player has drawn a mark on the clicked rectangle area, if not, draws the mark of the currently active player.
-        
+        public void ActivePlayerName()
+        {
+            if (playerOneTurn)
+            {
+                lblActivePlayerName.Text = playerOne.personScores.firstName;
+            }
+            else if (!playerOneTurn && !computerplayer)
+            {
+                lblActivePlayerName.Text = playerTwo.personScores.firstName;
+            }
+            else if (!playerOneTurn && computerplayer)
+            {
+                lblActivePlayerName.Text = "Computer";
+            }
+        }
         public void CheckPlayStuff(Point mouseCurrent)
         {
-          
+            
 
             //checks if X has won
-            if ((oneOneX && oneTwoX && oneThreeX) || (oneOneX && twoTwoX && threeThreeX) || (twoOneX && twoTwoX && twoThreeX) || (threeOneX && threeTwoX && threeThreeX) || (oneThreeX && twoTwoX && threeOneX) || (oneOneX && twoOneX && threeOneX)
-                 || (oneTwoX && twoTwoX && threeTwoX) || (oneThreeX && twoThreeX && threeThreeX))
-            {
-                //need to add code for saving scores to current players saved info
-                playerOne.wins++;
-                playerTwo.losses++;
-                //ONGELMIA DATETIMEN/TIMESPANIN FORMATOINNISSA
-                gameEnded = DateTime.Now;
-                string format = "HH:mm";
-                TimeSpan duration = gameEnded - gameStarted;
-                playerOne.totalGamePlayDuration = duration.ToString(format);
 
-                //playerOne.totalGamePlayDuration = playerOne.totalGamePlayDuration + (gameEnded - gameStarted);
-               // SaveChanges();
-                MessageBox.Show("X won!: {0}", (gameEnded - gameStarted).TotalMinutes.ToString());
-
-
-
-            }
-            //checks if O has won
-            else if ((oneOneO && oneTwoO && oneThreeO) || (oneOneO && twoTwoO && threeThreeO) || (twoOneO && twoTwoO && twoThreeO) || (threeOneO && threeTwoO && threeThreeO) || (oneThreeO && twoTwoO && threeOneO) || (oneOneO && twoOneO && threeOneO)
-                 || (oneTwoO && twoTwoO && threeTwoO) || (oneThreeO && twoThreeO && threeThreeO))
-
-            {
-                //need to add code for saving scores to current player 2 / AI saved info
-                playerTwo.wins++;
-                playerOne.losses++;
-                SaveChanges();
-                MessageBox.Show("O won!");
-
-            }
-            //checks if all areas are marked, thus game ending in draw
-            else if (oneOne && oneTwo && oneThree && twoOne && twoTwo & twoThree && threeOne && threeTwo & threeThree)
-            {
-                playerOne.draws++;
-                playerTwo.draws++;
-                SaveChanges();
-                MessageBox.Show("Draw!");
-            }
 
             // checks if it is player 1's turn (player one is always X). If it is, it saves the info on where he clicks and after that playerOneTurn is set to false. 
-            else if (playerOneTurn)
+            if (playerOneTurn)
             {
                 if ((mouseCurrent.X > 100) && (mouseCurrent.X < 300) && (mouseCurrent.Y > 70) && (mouseCurrent.Y < 170) && oneOne == false)
                 {
                     oneOne = true;
                     oneOneX = true;
                     playerOneTurn = false;
-                    playeOneClicked = true;
 
                 }
                 else if ((mouseCurrent.X > 300) && (mouseCurrent.X < 500) && (mouseCurrent.Y > 70) && (mouseCurrent.Y < 170) && oneTwo == false)
@@ -155,7 +110,6 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                     oneTwo = true;
                     oneTwoX = true;
                     playerOneTurn = false;
-                    playeOneClicked = true;
 
                 }
                 else if ((mouseCurrent.X > 500) && (mouseCurrent.X < 700) && (mouseCurrent.Y > 70) && (mouseCurrent.Y < 170) && oneThree == false)
@@ -163,14 +117,12 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                     oneThree = true;
                     oneThreeX = true;
                     playerOneTurn = false;
-                    playeOneClicked = true;
                 }
                 else if ((mouseCurrent.X > 100) && (mouseCurrent.X < 300) && (mouseCurrent.Y > 170) && (mouseCurrent.Y < 270) && twoOne == false)
                 {
                     twoOne = true;
                     twoOneX = true;
                     playerOneTurn = false;
-                    playeOneClicked = true;
 
                 }
                 else if ((mouseCurrent.X > 300) && (mouseCurrent.X < 500) && (mouseCurrent.Y > 170) && (mouseCurrent.Y < 270) && twoTwo == false)
@@ -178,46 +130,49 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                     twoTwo = true;
                     twoTwoX = true;
                     playerOneTurn = false;
-                    playeOneClicked = true;
                 }
                 else if ((mouseCurrent.X > 500) && (mouseCurrent.X < 700) && (mouseCurrent.Y > 170) && (mouseCurrent.Y < 270) && twoThree == false)
                 {
                     twoThree = true;
                     twoThreeX = true;
                     playerOneTurn = false;
-                    playeOneClicked = true;
                 }
                 else if ((mouseCurrent.X > 100) && (mouseCurrent.X < 300) && (mouseCurrent.Y > 270) && (mouseCurrent.Y < 370) && threeOne == false)
                 {
                     threeOne = true;
                     threeOneX = true;
                     playerOneTurn = false;
-                    playeOneClicked = true;
                 }
                 else if ((mouseCurrent.X > 300) && (mouseCurrent.X < 500) && (mouseCurrent.Y > 270) && (mouseCurrent.Y < 370) && threeTwo == false)
                 {
                     threeTwo = true;
                     threeTwoX = true;
                     playerOneTurn = false;
-                    playeOneClicked = true;
                 }
-              
+
                 else if ((mouseCurrent.X > 500) && (mouseCurrent.X < 700) && (mouseCurrent.Y > 270) && (mouseCurrent.Y < 370) && threeThree == false)
                 {
                     threeThree = true;
                     threeThreeX = true;
                     playerOneTurn = false;
-                    playeOneClicked = true;
                 }
                 else
                 {
                     MessageBox.Show("did not fall into any mouseclick check for drawing X.");
                 }
                 //second player is an AI. 
+                this.Invalidate();
                 if (computerplayer)
                 {
-                    AIGamePlay();
+                    if (!CheckForWinner(false))
+                    {
+                        int rndTimer = rnd.Next(500, 2001);
+                        AINeedsToThink2.Interval = rndTimer;
+                        AINeedsToThink2.Start();
+                    }
+
                 }
+
             }
             // PlayerOneTurn is false, thus next drawing is a circle, after that, PlayerOneTurn is set to true.
             else if (!playerOneTurn)
@@ -230,78 +185,131 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                         oneOne = true;
                         oneOneO = true;
                         playerOneTurn = true;
-                        playerTwoClicked = true;
                     }
                     else if ((mouseCurrent.X > 300) && (mouseCurrent.X < 500) && (mouseCurrent.Y > 70) && (mouseCurrent.Y < 170) && oneTwo == false)
                     {
                         oneTwo = true;
                         oneTwoO = true;
                         playerOneTurn = true;
-                        playerTwoClicked = true;
                     }
                     else if ((mouseCurrent.X > 500) && (mouseCurrent.X < 700) && (mouseCurrent.Y > 70) && (mouseCurrent.Y < 170) && oneThree == false)
                     {
                         oneThree = true;
                         oneThreeO = true;
                         playerOneTurn = true;
-                        playerTwoClicked = true;
                     }
                     else if ((mouseCurrent.X > 100) && (mouseCurrent.X < 300) && (mouseCurrent.Y > 170) && (mouseCurrent.Y < 270) && twoOne == false)
                     {
                         twoOne = true;
                         twoOneO = true;
                         playerOneTurn = true;
-                        playerTwoClicked = true;
                     }
                     else if ((mouseCurrent.X > 300) && (mouseCurrent.X < 500) && (mouseCurrent.Y > 170) && (mouseCurrent.Y < 270) && twoTwo == false)
                     {
                         twoTwo = true;
                         twoTwoO = true;
                         playerOneTurn = true;
-                        playerTwoClicked = true;
                     }
                     else if ((mouseCurrent.X > 500) && (mouseCurrent.X < 700) && (mouseCurrent.Y > 170) && (mouseCurrent.Y < 270) && twoThree == false)
                     {
                         twoThree = true;
                         twoThreeO = true;
                         playerOneTurn = true;
-                        playerTwoClicked = true;
                     }
                     else if ((mouseCurrent.X > 100) && (mouseCurrent.X < 300) && (mouseCurrent.Y > 270) && (mouseCurrent.Y < 370) && threeOne == false)
                     {
                         threeOne = true;
                         threeOneO = true;
                         playerOneTurn = true;
-                        playerTwoClicked = true;
                     }
                     else if ((mouseCurrent.X > 300) && (mouseCurrent.X < 500) && (mouseCurrent.Y > 270) && (mouseCurrent.Y < 370) && threeTwo == false)
                     {
                         threeTwo = true;
-                        threeTwoO = true;                     
+                        threeTwoO = true;
                         playerOneTurn = true;
-                        playerTwoClicked = true;
                     }
                     else if ((mouseCurrent.X > 500) && (mouseCurrent.X < 700) && (mouseCurrent.Y > 270) && (mouseCurrent.Y < 370) && threeThree == false)
                     {
                         threeThree = true;
-                        threeThreeO = true;     
+                        threeThreeO = true;
                         playerOneTurn = true;
-                        playerTwoClicked = true;
                     }
-                    
+
                 }
 
             }
             //forces paint-event to happen.
-            this.Invalidate();
+            
         }
+        //saves computerplayerinfo twofold for same reason its gives 2x the win message
+        private bool CheckForWinner(bool showWinner)
+        {
+            string winner = "Draw!";
+            bool someoneWon = false;
+            if ((oneOneX && oneTwoX && oneThreeX) || (oneOneX && twoTwoX && threeThreeX) || (twoOneX && twoTwoX && twoThreeX) || (threeOneX && threeTwoX && threeThreeX) || (oneThreeX && twoTwoX && threeOneX) || (oneOneX && twoOneX && threeOneX)
+                || (oneTwoX && twoTwoX && threeTwoX) || (oneThreeX && twoThreeX && threeThreeX))
+            {
+                playerOne.wins++;
+                playerTwo.losses++;
+                gameEnded = DateTime.Now;
+                TimeSpan duration = gameEnded.Subtract(gameStarted);
 
+                playerOne.totalGamePlayDuration = playerOne.totalGamePlayDuration + duration;
+                playerTwo.totalGamePlayDuration = playerTwo.totalGamePlayDuration + duration;
+                //  string format = "HH:mm:ss";
+                SaveChanges();
+                someoneWon = true;
+                winner = "X won!";
+                //MessageBox.Show("X won!");
+
+            }
+            //checks if O has won
+            else if ((oneOneO && oneTwoO && oneThreeO) || (oneOneO && twoTwoO && threeThreeO) || (twoOneO && twoTwoO && twoThreeO) || (threeOneO && threeTwoO && threeThreeO) || (oneThreeO && twoTwoO && threeOneO) || (oneOneO && twoOneO && threeOneO)
+                 || (oneTwoO && twoTwoO && threeTwoO) || (oneThreeO && twoThreeO && threeThreeO))
+
+            {
+                playerTwo.wins++;
+                playerOne.losses++;
+                gameEnded = DateTime.Now;
+                TimeSpan duration = gameEnded.Subtract(gameStarted);
+
+                playerOne.totalGamePlayDuration = playerOne.totalGamePlayDuration + duration;
+                playerTwo.totalGamePlayDuration = playerTwo.totalGamePlayDuration + duration;
+                SaveChanges();
+                someoneWon = true;
+                winner = "O won!";
+                //MessageBox.Show("O won!");
+
+            }
+            //checks if all areas are marked, thus game ending in draw
+            else if ((oneOne && oneTwo && oneThree && twoOne && twoTwo & twoThree && threeOne && threeTwo & threeThree) && !someoneWon)
+            {
+                playerOne.draws++;
+                playerTwo.draws++;
+                gameEnded = DateTime.Now;
+                TimeSpan duration = gameEnded.Subtract(gameStarted);
+
+                playerOne.totalGamePlayDuration = playerOne.totalGamePlayDuration + duration;
+                playerTwo.totalGamePlayDuration = playerTwo.totalGamePlayDuration + duration;
+              
+                SaveChanges();
+                someoneWon = true;
+                //MessageBox.Show("Draw!");
+            }
+
+            if (showWinner && someoneWon)
+            {
+                MessageBox.Show(winner);
+            }
+            return someoneWon;
+        }
         private void SaveChanges()
         {
             //voin tallennella totalplayedit tässä kans kunhan esittelen.
 
             string savePath = MainForm.savePathPlayerInfo;
-         var existingPlayers = GameScores.DeserializeList(savePath);
+            
+            var existingPlayers = GameScores.DeserializeList(savePath);
             for (int i = 0; i < existingPlayers.Count; i++)
             {
                 if (existingPlayers[i].personScores.Id == playerOne.personScores.Id)
@@ -314,6 +322,15 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                 }
             }
             GameScores.Serialize(existingPlayers, savePath);
+
+            if  (computerplayer)
+            {
+            string saveCompPath = MainForm.savePathComputerPlayerInfo;
+                var existingComputer = GameScores.DeserializeList(saveCompPath);
+                existingComputer[0] = playerTwo;
+                GameScores.Serialize(existingComputer, saveCompPath);
+            }
+            
         }
         /*
         private void AIDraw()
@@ -365,8 +382,8 @@ namespace OHJ_II_HarjotustehtäväRistinolla
         private void AIGamePlay()
         {
             Random rnd = new Random();
-            bool markDrawed = false;
-           
+
+
             do
             {
                 int rndCase = rnd.Next(1, 10);
@@ -378,157 +395,153 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                             oneOne = true;
                             oneOneO = true;
                             playerOneTurn = true;
-                            markDrawed = true;
+
                             break;
                         }
                         else
-                            wasTaken = true;
-                        break;
+
+                            break;
                     case 2:
                         if (!oneTwo)
                         {
                             oneTwo = true;
                             oneTwoO = true;
                             playerOneTurn = true;
-                            markDrawed = true;
+
                             break;
                         }
                         else
-                            wasTaken = true;
-                        break;
+
+                            break;
                     case 3:
                         if (!oneThree)
                         {
                             oneThree = true;
                             oneThreeO = true;
                             playerOneTurn = true;
-                            markDrawed = true;
                             break;
                         }
                         else
-                            wasTaken = true;
-                        break;
+                            break;
                     case 4:
                         if (!twoOne)
                         {
                             twoOne = true;
                             twoOneO = true;
                             playerOneTurn = true;
-                            markDrawed = true;
                             break;
                         }
                         else
-                            wasTaken = true;
-                        break;
+                            break;
                     case 5:
                         if (!twoTwo)
                         {
-                           twoTwo = true;
-                            twoTwoO= true;
+                            twoTwo = true;
+                            twoTwoO = true;
                             playerOneTurn = true;
-                            markDrawed = true;
                             break;
                         }
                         else
-                            wasTaken = true;
-                        break;
+                            break;
                     case 6:
                         if (!twoThree)
                         {
                             twoThree = true;
                             twoThreeO = true;
                             playerOneTurn = true;
-                            markDrawed = true;
                             break;
                         }
                         else
-                            wasTaken = true;
-                        break;
+                            break;
                     case 7:
                         if (!threeOne)
                         {
                             threeOne = true;
                             threeOneO = true;
                             playerOneTurn = true;
-                            markDrawed = true;
                             break;
                         }
                         else
-                            wasTaken = true;
-                        break;
+                            break;
                     case 8:
                         if (!threeTwo)
                         {
                             threeTwo = true;
                             threeTwoO = true;
                             playerOneTurn = true;
-                            markDrawed = true;
                             break;
                         }
                         else
-                            wasTaken = true;
-                        break;
+                            break;
                     case 9:
                         if (!threeThree)
                         {
                             threeThree = true;
                             threeThreeO = true;
                             playerOneTurn = true;
-                            markDrawed = true;
 
                             break;
                         }
                         else
-                            wasTaken = true;
-                        break;
-                } 
-                   
-                
-            } while (wasTaken || !markDrawed );
-            wasTaken = false;
+                            break;
+                }
+
+
+            } while (!playerOneTurn);
+            
             //force repainting
             this.Invalidate();
-          
-           // AIDraw();
+
+            
         }
 
-            private void DrawForm_Load(object sender, EventArgs e)
-            {
+        private void DrawForm_Load(object sender, EventArgs e)
+        {
             lblPlayer1FullName.Text = playerOne.personScores.Displayname;
             lblPlayer2FullName.Text = playerTwo.personScores.Displayname;
-            }
+            lblActivePlayerName.Text = playerOne.personScores.firstName;
+        }
 
-            private void DrawForm_Paint(object sender, PaintEventArgs e)
-            {
+        private void DrawForm_Paint(object sender, PaintEventArgs e)
+        {
+            ActivePlayerName();
             DrawgameField();
             DrawMarks();
+            //herra ope ei keksinyt ratkaisua, elä anna miinuspisteitä tupla woittotekstille :D
+            if (!hasGameEnded)
+            {
+                hasGameEnded = CheckForWinner(true);
             }
+          
+           
+
+        }
 
         //for drawing O mark in inputted coordinates
-            private void DrawEllipse(int x, int y)
-            {
-                Graphics drawEllipse;
-                drawEllipse = this.CreateGraphics();
-                Pen blackPen = new Pen(Color.Black, 5);
-                drawEllipse.DrawEllipse(blackPen, x, y, 100, 100);
-                
-                blackPen.Dispose();
-                drawEllipse.Dispose();
-            }
-            //draw x with inputted coordinates
-            private void DrawX(int xStart, int yStart, int xEnd, int yEnd)
-            {
-                Graphics drawX;
-                drawX = this.CreateGraphics();
-                Pen blackPen = new Pen(Color.Black, 5);
-                drawX.DrawLine(blackPen, xStart, yStart, xEnd, yEnd);
-                drawX.DrawLine(blackPen, xStart + 200, yStart, xStart, yEnd);
-               
-                blackPen.Dispose();
+        private void DrawEllipse(int x, int y)
+        {
+            Graphics drawEllipse;
+            drawEllipse = this.CreateGraphics();
+            Pen blackPen = new Pen(Color.Black, 5);
+            drawEllipse.DrawEllipse(blackPen, x, y, 100, 100);
+
+            blackPen.Dispose();
+            drawEllipse.Dispose();
+        }
+        //draw x with inputted coordinates
+        private void DrawX(int xStart, int yStart, int xEnd, int yEnd)
+        {
+            Graphics drawX;
+            drawX = this.CreateGraphics();
+            Pen blackPen = new Pen(Color.Black, 5);
+            drawX.DrawLine(blackPen, xStart, yStart, xEnd, yEnd);
+            drawX.DrawLine(blackPen, xStart + 200, yStart, xStart, yEnd);
+
+            blackPen.Dispose();
 
 
 
-            }
+        }
         //draw marks X and O, if CheckPlayStuff() has marked an area for a mark, used in Paint-event
         private void DrawMarks()
         {
@@ -536,7 +549,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
             {
                 DrawX(100, 70, 300, 170);
             }
-           if (oneTwoX)
+            if (oneTwoX)
             {
                 DrawX(300, 70, 500, 170);
             }
@@ -548,11 +561,11 @@ namespace OHJ_II_HarjotustehtäväRistinolla
             {
                 DrawX(100, 170, 300, 270);
             }
-             if (twoTwoX)
+            if (twoTwoX)
             {
                 DrawX(300, 170, 500, 270);
             }
-          if (twoThreeX)
+            if (twoThreeX)
             {
                 DrawX(500, 170, 700, 270);
             }
@@ -560,7 +573,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
             {
                 DrawX(100, 270, 300, 370);
             }
-             if (threeTwoX)
+            if (threeTwoX)
             {
                 DrawX(300, 270, 500, 370);
             }
@@ -577,7 +590,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
             {
                 DrawEllipse(350, 70);
             }
-           if (oneThreeO)
+            if (oneThreeO)
             {
                 DrawEllipse(550, 70);
             }
@@ -589,7 +602,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
             {
                 DrawEllipse(350, 170);
             }
-           if (twoThreeO)
+            if (twoThreeO)
             {
                 DrawEllipse(550, 170);
             }
@@ -597,7 +610,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
             {
                 DrawEllipse(150, 270);
             }
-           if (threeTwoO)
+            if (threeTwoO)
             {
                 DrawEllipse(350, 270);
             }
@@ -608,38 +621,40 @@ namespace OHJ_II_HarjotustehtäväRistinolla
         }
 
         //draws the gameboard.
-            private void DrawgameField()
-            {
-
-                System.Drawing.SolidBrush lgrayBrush = new System.Drawing.SolidBrush(System.Drawing.Color.LightGray);
-                System.Drawing.Graphics formGraphics;
-                formGraphics = this.CreateGraphics();
-                formGraphics.FillRectangle(lgrayBrush, new Rectangle(0, 0, 816, 489));
-                lgrayBrush.Dispose();
-                Brush whiteBrush = new SolidBrush(Color.White);
-                formGraphics.FillRectangle(whiteBrush, new Rectangle(100, 70, 600, 300));
-                whiteBrush.Dispose();
-                Pen blackPen = new Pen(Color.Black, 5);
-                formGraphics.DrawLine(blackPen, 300, 70, 300, 370);
-                formGraphics.DrawLine(blackPen, 500, 70, 500, 370);
-                formGraphics.DrawLine(blackPen, 100, 170, 700, 170);
-                formGraphics.DrawLine(blackPen, 100, 270, 700, 270);
-                blackPen.Dispose();
-
-               // formGraphics.Dispose();
-            }
-
-        private void DrawForm_MouseMove(object sender, MouseEventArgs e)
+        private void DrawgameField()
         {
-            //for cursor tracking purpose, remove when no need for this anymore.
-            //lblPlayer1FullName.Text = PointToClient(Cursor.Position).ToString();
+
+            System.Drawing.SolidBrush lgrayBrush = new System.Drawing.SolidBrush(System.Drawing.Color.LightGray);
+            System.Drawing.Graphics formGraphics;
+            formGraphics = this.CreateGraphics();
+            formGraphics.FillRectangle(lgrayBrush, new Rectangle(0, 0, 816, 489));
+            lgrayBrush.Dispose();
+            Brush whiteBrush = new SolidBrush(Color.White);
+            formGraphics.FillRectangle(whiteBrush, new Rectangle(100, 70, 600, 300));
+            whiteBrush.Dispose();
+            Pen blackPen = new Pen(Color.Black, 5);
+            formGraphics.DrawLine(blackPen, 300, 70, 300, 370);
+            formGraphics.DrawLine(blackPen, 500, 70, 500, 370);
+            formGraphics.DrawLine(blackPen, 100, 170, 700, 170);
+            formGraphics.DrawLine(blackPen, 100, 270, 700, 270);
+            blackPen.Dispose();
+
+            formGraphics.Dispose();
         }
+
+        private void AINeedsToThink2_Tick(object sender, EventArgs e)
+        {
+            AINeedsToThink2.Stop();
+            AIGamePlay();
+        }
+
+
     }
-    }
+}
 
 
 
 
-   
+
 
 

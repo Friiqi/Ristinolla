@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblPlayer1FullName = new System.Windows.Forms.Label();
             this.lblPlayer1TotalWins = new System.Windows.Forms.Label();
             this.lblPlayer1TotalDraws = new System.Windows.Forms.Label();
@@ -36,9 +37,9 @@
             this.lblPlayer2FullName = new System.Windows.Forms.Label();
             this.lblPlayer2TotalPlayTime = new System.Windows.Forms.Label();
             this.lblPlayer1TotalPlayTime = new System.Windows.Forms.Label();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.lblWhoseTurn = new System.Windows.Forms.Label();
             this.lblActivePlayerName = new System.Windows.Forms.Label();
+            this.AINeedsToThink2 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // lblPlayer1FullName
@@ -133,6 +134,10 @@
             this.lblActivePlayerName.TabIndex = 9;
             this.lblActivePlayerName.Text = "[pelaaja]";
             // 
+            // AINeedsToThink2
+            // 
+            this.AINeedsToThink2.Tick += new System.EventHandler(this.AINeedsToThink2_Tick);
+            // 
             // DrawForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -154,7 +159,6 @@
             this.Load += new System.EventHandler(this.DrawForm_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.DrawForm_Paint);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DrawForm_MouseClick);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DrawForm_MouseMove);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -170,8 +174,8 @@
         private System.Windows.Forms.Label lblPlayer2FullName;
         private System.Windows.Forms.Label lblPlayer2TotalPlayTime;
         private System.Windows.Forms.Label lblPlayer1TotalPlayTime;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label lblWhoseTurn;
         private System.Windows.Forms.Label lblActivePlayerName;
+        private System.Windows.Forms.Timer AINeedsToThink2;
     }
 }

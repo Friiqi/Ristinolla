@@ -52,7 +52,7 @@
             this.lstBoxPvE.FormattingEnabled = true;
             this.lstBoxPvE.Location = new System.Drawing.Point(34, 144);
             this.lstBoxPvE.Name = "lstBoxPvE";
-            this.lstBoxPvE.Size = new System.Drawing.Size(164, 17);
+            this.lstBoxPvE.Size = new System.Drawing.Size(164, 43);
             this.lstBoxPvE.TabIndex = 1;
             this.lstBoxPvE.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 

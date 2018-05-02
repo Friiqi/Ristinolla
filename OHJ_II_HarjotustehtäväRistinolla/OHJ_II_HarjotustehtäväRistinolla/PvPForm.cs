@@ -12,22 +12,12 @@ namespace OHJ_II_HarjotustehtäväRistinolla
 {
     public partial class PvPForm : Form
     {
-        //what to put here to be able to get the listbox populated?
+ 
         List<GameScores> existingPlayers;
         public PvPForm()
         {
-            
             InitializeComponent();
             PopulatePlayerSelection();
-            /*
-            // the code under here is for trying to get listbox/combobox to display something other than the filepath and filename for the stored .json file.
-                        this.cmbPvPForm.ValueMember = "Id";
-                       this.cmbPvPForm.DisplayMember = "Displayname";
-                     //   this.cmbPvPForm.DataSource = this.lstBind;
-            string savePath = @"c:\temp\savedfiles\savedplayerinfo.json";
-            var existingPlayers = GameScores.DeserializeList(savePath);
-
-    */
         }
 
         private void btnReturnToMainForm_Click(object sender, EventArgs e)
@@ -37,10 +27,8 @@ namespace OHJ_II_HarjotustehtäväRistinolla
             openMain.Show();
         }
 
-        public void btnCreateNerPlayer_Click(object sender, EventArgs e)
+        public void btnCreateNewPlayer_Click(object sender, EventArgs e)
         {
-           
-            
             NewPlayerForm newPlayer = new NewPlayerForm();
             if (newPlayer.ShowDialog() == DialogResult.OK)
             {
@@ -67,18 +55,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //add here the part where you access drawform-forms computerplayer bool and set it to true!
-
-            if (!playerOne.HasValue || !playerTwo.HasValue)
-            {
-                MessageBox.Show("Valitse pelaajat!");
-                return;
-            }
-            this.Close();
-            DrawForm newDraw = new DrawForm();
-            newDraw.playerOne = this.playerOne.Value;
-            newDraw.playerTwo = this.playerTwo.Value;
-            newDraw.Show();
+    
         }
 
         GameScores? playerOne = null;
@@ -98,6 +75,20 @@ namespace OHJ_II_HarjotustehtäväRistinolla
             {
                 playerTwo = existingPlayers[lstbPlayerList2.SelectedIndex];
             }
+        }
+
+        private void btnStartGame_Click(object sender, EventArgs e)
+        {
+            if (!playerOne.HasValue || !playerTwo.HasValue && (!playerOne.Equals(playerTwo)))
+            {
+                MessageBox.Show("Valitse pelaajat!");
+                return;
+            }
+            this.Close();
+            DrawForm newDraw = new DrawForm();
+            newDraw.playerOne = this.playerOne.Value;
+            newDraw.playerTwo = this.playerTwo.Value;
+            newDraw.Show();
         }
     }
 }

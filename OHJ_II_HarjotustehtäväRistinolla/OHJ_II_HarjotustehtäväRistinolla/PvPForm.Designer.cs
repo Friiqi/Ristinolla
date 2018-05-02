@@ -33,11 +33,12 @@
             this.btnStartGame = new System.Windows.Forms.Button();
             this.lblChooseExsitingPlayerInPvE = new System.Windows.Forms.Label();
             this.lblPvPFormCreateNewPlayer = new System.Windows.Forms.Label();
-            this.btnCreateNerPlayer = new System.Windows.Forms.Button();
+            this.btnCreateNewPlayer = new System.Windows.Forms.Button();
             this.lblPvPFormTopic = new System.Windows.Forms.Label();
             this.lstbPlayerList = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.lstbPlayerList2 = new System.Windows.Forms.ListBox();
+            this.lblExistingPlayer1 = new System.Windows.Forms.Label();
+            this.lblExistingPlayer2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnReturnToMainForm
@@ -67,6 +68,7 @@
             this.btnStartGame.TabIndex = 13;
             this.btnStartGame.Text = "Aloita peli!";
             this.btnStartGame.UseVisualStyleBackColor = true;
+            this.btnStartGame.Click += new System.EventHandler(this.btnStartGame_Click);
             // 
             // lblChooseExsitingPlayerInPvE
             // 
@@ -86,15 +88,15 @@
             this.lblPvPFormCreateNewPlayer.TabIndex = 11;
             this.lblPvPFormCreateNewPlayer.Text = "Luo uusi pelaaja";
             // 
-            // btnCreateNerPlayer
+            // btnCreateNewPlayer
             // 
-            this.btnCreateNerPlayer.Location = new System.Drawing.Point(15, 92);
-            this.btnCreateNerPlayer.Name = "btnCreateNerPlayer";
-            this.btnCreateNerPlayer.Size = new System.Drawing.Size(75, 23);
-            this.btnCreateNerPlayer.TabIndex = 10;
-            this.btnCreateNerPlayer.Text = "Uusi";
-            this.btnCreateNerPlayer.UseVisualStyleBackColor = true;
-            this.btnCreateNerPlayer.Click += new System.EventHandler(this.btnCreateNerPlayer_Click);
+            this.btnCreateNewPlayer.Location = new System.Drawing.Point(15, 92);
+            this.btnCreateNewPlayer.Name = "btnCreateNewPlayer";
+            this.btnCreateNewPlayer.Size = new System.Drawing.Size(75, 23);
+            this.btnCreateNewPlayer.TabIndex = 10;
+            this.btnCreateNewPlayer.Text = "Uusi";
+            this.btnCreateNewPlayer.UseVisualStyleBackColor = true;
+            this.btnCreateNewPlayer.Click += new System.EventHandler(this.btnCreateNewPlayer_Click);
             // 
             // lblPvPFormTopic
             // 
@@ -114,16 +116,6 @@
             this.lstbPlayerList.TabIndex = 17;
             this.lstbPlayerList.SelectedIndexChanged += new System.EventHandler(this.lstbPlayerList_SelectedIndexChanged);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(258, 215);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // lstbPlayerList2
             // 
             this.lstbPlayerList2.FormattingEnabled = true;
@@ -133,20 +125,39 @@
             this.lstbPlayerList2.TabIndex = 19;
             this.lstbPlayerList2.SelectedIndexChanged += new System.EventHandler(this.lstbPlayerList2_SelectedIndexChanged);
             // 
+            // lblExistingPlayer1
+            // 
+            this.lblExistingPlayer1.AutoSize = true;
+            this.lblExistingPlayer1.Location = new System.Drawing.Point(171, 68);
+            this.lblExistingPlayer1.Name = "lblExistingPlayer1";
+            this.lblExistingPlayer1.Size = new System.Drawing.Size(51, 13);
+            this.lblExistingPlayer1.TabIndex = 20;
+            this.lblExistingPlayer1.Text = "Pelaaja 1";
+            // 
+            // lblExistingPlayer2
+            // 
+            this.lblExistingPlayer2.AutoSize = true;
+            this.lblExistingPlayer2.Location = new System.Drawing.Point(330, 68);
+            this.lblExistingPlayer2.Name = "lblExistingPlayer2";
+            this.lblExistingPlayer2.Size = new System.Drawing.Size(51, 13);
+            this.lblExistingPlayer2.TabIndex = 21;
+            this.lblExistingPlayer2.Text = "Pelaaja 2";
+            // 
             // PvPForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblExistingPlayer2);
+            this.Controls.Add(this.lblExistingPlayer1);
             this.Controls.Add(this.lstbPlayerList2);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.lstbPlayerList);
             this.Controls.Add(this.btnReturnToMainForm);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnStartGame);
             this.Controls.Add(this.lblChooseExsitingPlayerInPvE);
             this.Controls.Add(this.lblPvPFormCreateNewPlayer);
-            this.Controls.Add(this.btnCreateNerPlayer);
+            this.Controls.Add(this.btnCreateNewPlayer);
             this.Controls.Add(this.lblPvPFormTopic);
             this.Name = "PvPForm";
             this.Text = "Form1";
@@ -162,10 +173,11 @@
         private System.Windows.Forms.Button btnStartGame;
         private System.Windows.Forms.Label lblChooseExsitingPlayerInPvE;
         private System.Windows.Forms.Label lblPvPFormCreateNewPlayer;
-        private System.Windows.Forms.Button btnCreateNerPlayer;
+        private System.Windows.Forms.Button btnCreateNewPlayer;
         private System.Windows.Forms.Label lblPvPFormTopic;
         private System.Windows.Forms.ListBox lstbPlayerList;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ListBox lstbPlayerList2;
+        private System.Windows.Forms.Label lblExistingPlayer1;
+        private System.Windows.Forms.Label lblExistingPlayer2;
     }
 }

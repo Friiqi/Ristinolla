@@ -30,4 +30,3 @@ D:\OHJ_II_HarjotustehtäväRistinolla\OHJ_II_HarjotustehtäväRistinolla\bin\Deb
 C:\Users\Reiska\Documents\GitHub\Ristinolla\OHJ_II_HarjotustehtäväRistinolla\OHJ_II_HarjotustehtäväRistinolla\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Reiska\Documents\GitHub\Ristinolla\OHJ_II_HarjotustehtäväRistinolla\OHJ_II_HarjotustehtäväRistinolla\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Reiska\Documents\GitHub\Ristinolla\OHJ_II_HarjotustehtäväRistinolla\OHJ_II_HarjotustehtäväRistinolla\obj\Debug\OHJ_II_HarjotustehtäväRistinolla.csproj.CopyComplete
-D:\OHJ_II_HarjotustehtäväRistinolla\OHJ_II_HarjotustehtäväRistinolla\obj\Debug\OHJ_II_HarjotustehtäväRistinolla.csproj.CoreCompileInputs.cache

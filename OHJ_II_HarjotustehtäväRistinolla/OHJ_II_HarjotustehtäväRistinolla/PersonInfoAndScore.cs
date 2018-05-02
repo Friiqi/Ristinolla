@@ -33,9 +33,9 @@ namespace OHJ_II_HarjotustehtäväRistinolla
         public struct GameScores
         {
             public Person personScores;
-
+        public bool computerPlayer;
             public float wins, losses, draws;
-            public string totalGamePlayDuration;
+        public TimeSpan totalGamePlayDuration;
 
             public static void Serialize(List<GameScores> listOfPlayers, string savePath)
             {

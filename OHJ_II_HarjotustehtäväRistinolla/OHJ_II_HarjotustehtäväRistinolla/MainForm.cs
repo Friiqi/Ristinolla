@@ -14,6 +14,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
     {
         public const string savePath = @"c:\temp\savedfiles";
         public const string savePathPlayerInfo = @"c:\temp\savedfiles\savedplayerinfo.json";
+        public const string savePathComputerPlayerInfo = @"c:\temp\savedfiles\savedcomputerinfo.json";
         public MainForm()
         {
             InitializeComponent();
