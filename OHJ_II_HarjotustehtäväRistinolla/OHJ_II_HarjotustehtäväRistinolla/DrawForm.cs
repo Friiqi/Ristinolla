@@ -105,7 +105,11 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                 //need to add code for saving scores to current players saved info
                 playerOne.wins++;
                 playerTwo.losses++;
+                //ONGELMIA DATETIMEN/TIMESPANIN FORMATOINNISSA
                 gameEnded = DateTime.Now;
+                string format = "HH:mm";
+                TimeSpan duration = gameEnded - gameStarted;
+                playerOne.totalGamePlayDuration = duration.ToString(format);
 
                 //playerOne.totalGamePlayDuration = playerOne.totalGamePlayDuration + (gameEnded - gameStarted);
                // SaveChanges();
