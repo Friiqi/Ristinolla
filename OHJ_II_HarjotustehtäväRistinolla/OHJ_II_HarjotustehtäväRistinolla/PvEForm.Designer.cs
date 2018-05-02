@@ -127,6 +127,7 @@
             this.Controls.Add(this.label1);
             this.Name = "PvEForm";
             this.Text = "Pelaaja vs. tietokone";
+            this.Load += new System.EventHandler(this.PvEForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

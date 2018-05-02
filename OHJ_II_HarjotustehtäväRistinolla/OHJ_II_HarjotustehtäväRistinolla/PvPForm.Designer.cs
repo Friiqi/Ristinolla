@@ -35,9 +35,9 @@
             this.lblPvPFormCreateNewPlayer = new System.Windows.Forms.Label();
             this.btnCreateNerPlayer = new System.Windows.Forms.Button();
             this.lblPvPFormTopic = new System.Windows.Forms.Label();
-            this.cmbPvPForm = new System.Windows.Forms.ComboBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.lstbPlayerList = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.lstbPlayerList2 = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // btnReturnToMainForm
@@ -105,22 +105,14 @@
             this.lblPvPFormTopic.TabIndex = 8;
             this.lblPvPFormTopic.Text = "Sinä vs. toinen pelaaja!! Kumpi onkaan parempi pelaamaan?";
             // 
-            // cmbPvPForm
+            // lstbPlayerList
             // 
-            this.cmbPvPForm.FormattingEnabled = true;
-            this.cmbPvPForm.Location = new System.Drawing.Point(15, 162);
-            this.cmbPvPForm.Name = "cmbPvPForm";
-            this.cmbPvPForm.Size = new System.Drawing.Size(121, 21);
-            this.cmbPvPForm.TabIndex = 16;
-            this.cmbPvPForm.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(174, 84);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 108);
-            this.listBox1.TabIndex = 17;
+            this.lstbPlayerList.FormattingEnabled = true;
+            this.lstbPlayerList.Location = new System.Drawing.Point(174, 84);
+            this.lstbPlayerList.Name = "lstbPlayerList";
+            this.lstbPlayerList.Size = new System.Drawing.Size(120, 108);
+            this.lstbPlayerList.TabIndex = 17;
+            this.lstbPlayerList.SelectedIndexChanged += new System.EventHandler(this.lstbPlayerList_SelectedIndexChanged);
             // 
             // button1
             // 
@@ -132,14 +124,23 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // lstbPlayerList2
+            // 
+            this.lstbPlayerList2.FormattingEnabled = true;
+            this.lstbPlayerList2.Location = new System.Drawing.Point(333, 84);
+            this.lstbPlayerList2.Name = "lstbPlayerList2";
+            this.lstbPlayerList2.Size = new System.Drawing.Size(120, 108);
+            this.lstbPlayerList2.TabIndex = 19;
+            this.lstbPlayerList2.SelectedIndexChanged += new System.EventHandler(this.lstbPlayerList2_SelectedIndexChanged);
+            // 
             // PvPForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lstbPlayerList2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.cmbPvPForm);
+            this.Controls.Add(this.lstbPlayerList);
             this.Controls.Add(this.btnReturnToMainForm);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnStartGame);
@@ -163,8 +164,8 @@
         private System.Windows.Forms.Label lblPvPFormCreateNewPlayer;
         private System.Windows.Forms.Button btnCreateNerPlayer;
         private System.Windows.Forms.Label lblPvPFormTopic;
-        private System.Windows.Forms.ComboBox cmbPvPForm;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox lstbPlayerList;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ListBox lstbPlayerList2;
     }
 }

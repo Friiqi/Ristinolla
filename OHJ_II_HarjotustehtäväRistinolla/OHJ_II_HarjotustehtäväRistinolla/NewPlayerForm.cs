@@ -28,6 +28,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
 
         private void btnNewPlayerReturnToMainForm_Click(object sender, EventArgs e)
         {
+
             Close();
             MainForm openMain = new MainForm();
             openMain.Show();
@@ -35,8 +36,10 @@ namespace OHJ_II_HarjotustehtäväRistinolla
 
         private void btnBackFromNewPlayerForm_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
            
+
         }
 
         private void btnNewPlayerEmpty_Click(object sender, EventArgs e)
@@ -54,14 +57,16 @@ namespace OHJ_II_HarjotustehtäväRistinolla
             this.person.firstName = this.txtNewPlayerFirstName.Text;
             this.person.lastName = this.txtNewPlayerLastName.Text;
             this.person.dateOfBirth = this.dtpickNewPlayerDateOfBirth.Value.Date;
+            this.person.Id = Guid.NewGuid();
             personIASGameScore.personScores = this.person;
 
             //player = this.txtNewPlayerFirstName.Text + " " + txtNewPlayerLastName.Text;
-            string savePath = @"c:\temp\savedfiles\savedplayerinfo.json";
+            string savePath = MainForm.savePathPlayerInfo;
             var existingPlayers = GameScores.DeserializeList(savePath);
             existingPlayers.Add(personIASGameScore);
             //serialize the struct information and save to a .dat file, and then close the form         
             GameScores.Serialize(existingPlayers, savePath);
+            this.DialogResult = DialogResult.OK;
             this.Close();
 
         }

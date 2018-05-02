@@ -19,7 +19,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
             public string firstName, lastName;
             public DateTime dateOfBirth;
 
-            public Guid Id { get; set; }
+        public Guid Id;
             public string Displayname
             {
                 get
@@ -53,7 +53,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
             if (System.IO.File.Exists(savePath))
             {
                 // deserialize JSON directly from a file
-                StreamReader file = File.OpenText(savePath);
+                
                 string data = System.IO.File.ReadAllText(savePath);
                 JsonSerializer serializer = new JsonSerializer();
                 var gameScoresDeSerialized = Newtonsoft.Json.JsonConvert.DeserializeObject<List<GameScores>>(data);

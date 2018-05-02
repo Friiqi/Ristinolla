@@ -2,19 +2,24 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace OHJ_II_HarjotustehtäväRistinolla
 {
     public partial class DrawForm : Form
     {
 
-
+        // is 2nd player a computer
         public bool computerplayer = false;
+        public GameScores playerOne;
+        public GameScores playerTwo;
+        //checks if it is player one's turn.
         private bool playerOneTurn = true;
         //are the 2 following needed anywhere anymore?
         private bool playeOneClicked = false;
@@ -50,25 +55,37 @@ namespace OHJ_II_HarjotustehtäväRistinolla
         private bool threeOneO = false;
         private bool threeTwoO = false;
         private bool threeThreeO = false;
-
+        // this tells where to draw, 11 = first row, first rectangle, 22 is second row second rectangle etc.
         private int drawWhere = 0;
-        //for checking AI switch-case loop
+        //for checking AIGamePlay() switch-case loop
         bool wasTaken = false;
+        Stopwatch playerOneTimer = new Stopwatch();
         public DrawForm()
         {
             InitializeComponent();
-            /*
-            while (playerOneTurn)
-            {
-                //here the code where to increase player's total time played? where would this be best put?
-            }
-            */
+            
+            
         }
         public void DrawForm_MouseClick(object sender, MouseEventArgs e)
         {
             Point mouseCurrent = PointToClient(Cursor.Position);
+            //if wanna fiddle with player-sensitive timers.
             
+/*
+            if (playerOneTurn)
+            {
+
+                playerOneTimer.Start();
+                lblPlayer1TotalPlayTime.Text = playerOneTimer.Elapsed.ToString();
+            }
+
+            else if (!playerOneTurn)
+            {
+                playerOneTimer.Stop();
+            }
+ */
             CheckPlayStuff(mouseCurrent);
+            //following draw-operations were moved inside CheckPlayStuff() and AIDraw()
             //inputs the current coordinates to the DrawX or DrawEllipse for drawing the players mark, if the clicked area passes through CheckPlayStuff() checks, and then the drawing of the mark happens with DrawX/DrawEllipse.
             /*
             if (playeOneClicked && playerOneTurn)
@@ -181,7 +198,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
 
 
 
-        // checks if either player has drawn a mark on the square in question, if not, draws the mark of the currently active player.
+        // checks if either player has drawn a mark on the clicked rectangle area, if not, draws the mark of the currently active player.
         
         public void CheckPlayStuff(Point mouseCurrent)
         {
@@ -194,7 +211,11 @@ namespace OHJ_II_HarjotustehtäväRistinolla
 
                 //X won the game
                 //need to add code for saving scores to current players saved info
+                playerOne.wins++;
+                playerTwo.losses++;
+                SaveChanges();
                 MessageBox.Show("X won!");
+
 
 
             }
@@ -204,12 +225,16 @@ namespace OHJ_II_HarjotustehtäväRistinolla
             {
                 // O won the game
                 //need to add code for saving scores to current player 2 / AI saved info
+                playerTwo.wins++;
+                playerOne.losses++;
                 MessageBox.Show("O won!");
 
             }
 
             else if (oneOne && oneTwo && oneThree && twoOne && twoTwo & twoThree && threeOne && threeTwo & threeThree)
             {
+                playerOne.draws++;
+                playerTwo.draws++;
                 MessageBox.Show("Draw!");
             }
 
@@ -223,7 +248,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                     drawWhere = 11;
                     oneOne = true;
                     oneOneX = true;
-                    DrawX(100, 70,300, 170);
+                    //DrawX(100, 70,300, 170);
                     playerOneTurn = false;
                     playeOneClicked = true;
 
@@ -307,7 +332,11 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                 {
                     MessageBox.Show("did not fall into any mouseclick check for drawing X.");
                 }
-               
+                //second player is an AI. 
+                if (computerplayer)
+                {
+                    AIGamePlay();
+                }
             }
             // PlayerOneTurn is false, thus next drawing is a circle, after that, PlayerOneTurn is set to true.
             else if (!playerOneTurn)
@@ -399,20 +428,29 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                     
                 }
 
-            
-                //second player is an AI. Need to move this to happen outside of mouseclick_event.
-                else
-                {
-                    AIGamePlay();
-                    
-                 
-                }
-                
-
-
             }
+            //forces paint-event to happen.
+            this.Invalidate();
         }
 
+        private void SaveChanges()
+        {
+            //voin tallennella totalplayedit tässä kans kunhan esittelen.
+            string savePath = MainForm.savePathPlayerInfo;
+         var existingPlayers = GameScores.DeserializeList(savePath);
+            for (int i = 0; i < existingPlayers.Count; i++)
+            {
+                if (existingPlayers[i].personScores.Id == playerOne.personScores.Id)
+                {
+                    existingPlayers[i] = playerOne;
+                }
+                else if (existingPlayers[i].personScores.Id == playerTwo.personScores.Id)
+                {
+                    existingPlayers[i] = playerTwo;
+                }
+            }
+            GameScores.Serialize(existingPlayers, savePath);
+        }
 
         private void AIDraw()
         {
@@ -592,21 +630,29 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                 
             } while (wasTaken || !markDrawed );
             wasTaken = false;
-            
+            //this.invalidate tähän,siirrä paint-eventtiin nuo piirrot kuten esimerkkinä 1kpl  X piirto on jo.
             AIDraw();
         }
 
             private void DrawForm_Load(object sender, EventArgs e)
             {
-            
-
-        }
+            lblPlayer1FullName.Text = playerOne.personScores.Displayname;
+            lblPlayer2FullName.Text = playerTwo.personScores.Displayname;
+            }
 
             private void DrawForm_Paint(object sender, PaintEventArgs e)
             {
             //is this the only place where this works? how about when it draws over already drawn X / O marks? why does it draw over when either player wins? 
             DrawgameField();
-
+            //lisää loput ja pistä omaan funktioon.
+            if (oneOneX)
+            {
+                DrawX(100, 70, 300, 170);
+            }
+            if (oneTwoX)
+            {
+                DrawX(300, 70, 500, 170);
+            }
         }
 
         //for drawing O mark in inputted coordinates
@@ -659,7 +705,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
         private void DrawForm_MouseMove(object sender, MouseEventArgs e)
         {
             //for cursor tracking purpose, remove when no need for this anymore.
-            lblPlayer1FullName.Text = PointToClient(Cursor.Position).ToString();
+            //lblPlayer1FullName.Text = PointToClient(Cursor.Position).ToString();
         }
     }
     }

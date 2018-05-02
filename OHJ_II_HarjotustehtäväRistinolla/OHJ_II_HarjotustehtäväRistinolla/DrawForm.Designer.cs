@@ -116,18 +116,20 @@
             // lblWhoseTurn
             // 
             this.lblWhoseTurn.AutoSize = true;
+            this.lblWhoseTurn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWhoseTurn.Location = new System.Drawing.Point(264, 9);
             this.lblWhoseTurn.Name = "lblWhoseTurn";
-            this.lblWhoseTurn.Size = new System.Drawing.Size(54, 13);
+            this.lblWhoseTurn.Size = new System.Drawing.Size(87, 20);
             this.lblWhoseTurn.TabIndex = 8;
             this.lblWhoseTurn.Text = "Pelivuoro:";
             // 
             // lblActivePlayerName
             // 
             this.lblActivePlayerName.AutoSize = true;
+            this.lblActivePlayerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblActivePlayerName.Location = new System.Drawing.Point(363, 9);
             this.lblActivePlayerName.Name = "lblActivePlayerName";
-            this.lblActivePlayerName.Size = new System.Drawing.Size(47, 13);
+            this.lblActivePlayerName.Size = new System.Drawing.Size(77, 20);
             this.lblActivePlayerName.TabIndex = 9;
             this.lblActivePlayerName.Text = "[pelaaja]";
             // 
@@ -146,6 +148,7 @@
             this.Controls.Add(this.lblPlayer1TotalDraws);
             this.Controls.Add(this.lblPlayer1TotalWins);
             this.Controls.Add(this.lblPlayer1FullName);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "DrawForm";
             this.Text = "Ristinolla";
             this.Load += new System.EventHandler(this.DrawForm_Load);

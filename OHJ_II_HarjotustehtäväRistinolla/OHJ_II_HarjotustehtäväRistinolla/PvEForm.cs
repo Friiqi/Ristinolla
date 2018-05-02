@@ -45,5 +45,10 @@ namespace OHJ_II_HarjotustehtäväRistinolla
             this.Close();
 
         }
+
+        private void PvEForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
