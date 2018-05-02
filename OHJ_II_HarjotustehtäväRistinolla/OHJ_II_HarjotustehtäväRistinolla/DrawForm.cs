@@ -55,15 +55,16 @@ namespace OHJ_II_HarjotustehtäväRistinolla
         private bool threeOneO = false;
         private bool threeTwoO = false;
         private bool threeThreeO = false;
+        private DateTime gameStarted, gameEnded;
         // this tells where to draw, 11 = first row, first rectangle, 22 is second row second rectangle etc.
-        private int drawWhere = 0;
+
         //for checking AIGamePlay() switch-case loop
         bool wasTaken = false;
         Stopwatch playerOneTimer = new Stopwatch();
         public DrawForm()
         {
             InitializeComponent();
-            
+            gameStarted = DateTime.Now;
             
         }
         public void DrawForm_MouseClick(object sender, MouseEventArgs e)
@@ -85,114 +86,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
             }
  */
             CheckPlayStuff(mouseCurrent);
-            //following draw-operations were moved inside CheckPlayStuff() and AIDraw()
-            //inputs the current coordinates to the DrawX or DrawEllipse for drawing the players mark, if the clicked area passes through CheckPlayStuff() checks, and then the drawing of the mark happens with DrawX/DrawEllipse.
-            /*
-            if (playeOneClicked && playerOneTurn)
-            {
-                switch (drawWhere)
-                {
-                    case 11:
-                        DrawX(100, 70, 300, 170);
-                        drawWhere = 0;
-                        playerOneTurn = false;
-                        break;
-                    case 12:
-                        DrawX(300, 70, 500, 170);
-                        drawWhere = 0;
-                        playerOneTurn = false;
-                        break;
-                    case 13:
-                        DrawX(500, 70, 700, 170);
-                        drawWhere = 0;
-                        playerOneTurn = false;
-                        break;
-                    case 21:
-                        DrawX(100, 170, 300, 270);
-                        drawWhere = 0;
-                        playerOneTurn = false;
-                        break;
-                    case 22:
-                        DrawX(300, 170, 500, 270);
-                        drawWhere = 0;
-                        playerOneTurn = false;
-                        break;
-                    case 23:
-                        DrawX(500, 170, 700, 270);
-                        drawWhere = 0;
-                        playerOneTurn = false;
-                        break;
-                    case 31:
-                        DrawX(100, 270, 300, 370);
-                        drawWhere = 0;
-                        playerOneTurn = false;
-                        break;
-                    case 32:
-                        DrawX(300, 270, 500, 370);
-                        drawWhere = 0;
-                        playerOneTurn = false;
-                        break;
-                    case 33:
-                        DrawX(500, 270, 700, 370);
-                        drawWhere = 0;
-                        playerOneTurn = false;
-                        break;
-                }
-            }
-
-            //draws second player O marks when click happens, unless it is AI (computerplayer == true)
-            else  if (!computerplayer && playerTwoClicked && !playerOneTurn)
-                {
-                    switch (drawWhere)
-                    {
-                        case 11:
-                            DrawEllipse(150, 70);
-                            drawWhere = 0;
-                        playerOneTurn = true;
-                        break;
-                        case 12:
-                            DrawEllipse(350, 70);
-                            drawWhere = 0;
-                        playerOneTurn = true;
-                        break;
-                        case 13:
-                            DrawEllipse(550, 70);
-                            drawWhere = 0;
-                        playerOneTurn = true;
-                        break;
-                        case 21:
-                            DrawEllipse(150, 170);
-                            drawWhere = 0;
-                        playerOneTurn = true;
-                        break;
-                        case 22:
-                            DrawEllipse(350, 170);
-                            drawWhere = 0;
-                        playerOneTurn = true;
-                        break;
-                        case 23:
-                            DrawEllipse(550, 170);
-                            drawWhere = 0;
-                        playerOneTurn = true;
-                        break;
-                        case 31:
-                            DrawEllipse(150, 270);
-                            drawWhere = 0;
-                        playerOneTurn = true;
-                        break;
-                        case 32:
-                            DrawEllipse(350, 270);
-                            drawWhere = 0;
-                        playerOneTurn = true;
-                        break;
-                        case 33:
-                            DrawEllipse(550, 270);
-                            drawWhere = 0;
-                        playerOneTurn = true;
-                        break;
-                    }
-                }
-            */
+          
 
         }
 
@@ -204,127 +98,110 @@ namespace OHJ_II_HarjotustehtäväRistinolla
         {
           
 
-            //following 2 IF's check if there has been a 3 mark row of either X or O to see if either has won.
+            //checks if X has won
             if ((oneOneX && oneTwoX && oneThreeX) || (oneOneX && twoTwoX && threeThreeX) || (twoOneX && twoTwoX && twoThreeX) || (threeOneX && threeTwoX && threeThreeX) || (oneThreeX && twoTwoX && threeOneX) || (oneOneX && twoOneX && threeOneX)
-                 || (oneTwoX && twoTwoX && threeTwoX) || (oneThreeX && twoThreeX && twoThreeX))
+                 || (oneTwoX && twoTwoX && threeTwoX) || (oneThreeX && twoThreeX && threeThreeX))
             {
-
-                //X won the game
                 //need to add code for saving scores to current players saved info
                 playerOne.wins++;
                 playerTwo.losses++;
-                SaveChanges();
-                MessageBox.Show("X won!");
+                gameEnded = DateTime.Now;
+
+                //playerOne.totalGamePlayDuration = playerOne.totalGamePlayDuration + (gameEnded - gameStarted);
+               // SaveChanges();
+                MessageBox.Show("X won!: {0}", (gameEnded - gameStarted).TotalMinutes.ToString());
 
 
 
             }
+            //checks if O has won
             else if ((oneOneO && oneTwoO && oneThreeO) || (oneOneO && twoTwoO && threeThreeO) || (twoOneO && twoTwoO && twoThreeO) || (threeOneO && threeTwoO && threeThreeO) || (oneThreeO && twoTwoO && threeOneO) || (oneOneO && twoOneO && threeOneO)
-                 || (oneTwoO && twoTwoO && threeTwoO) || (oneThreeO && twoThreeO && twoThreeO))
+                 || (oneTwoO && twoTwoO && threeTwoO) || (oneThreeO && twoThreeO && threeThreeO))
 
             {
-                // O won the game
                 //need to add code for saving scores to current player 2 / AI saved info
                 playerTwo.wins++;
                 playerOne.losses++;
+                SaveChanges();
                 MessageBox.Show("O won!");
 
             }
-
+            //checks if all areas are marked, thus game ending in draw
             else if (oneOne && oneTwo && oneThree && twoOne && twoTwo & twoThree && threeOne && threeTwo & threeThree)
             {
                 playerOne.draws++;
                 playerTwo.draws++;
+                SaveChanges();
                 MessageBox.Show("Draw!");
             }
 
-            // checks if it is player 1's turn (player one is always X). If it is, it draws X where he clicks and after that playerOneTurn is set to false. 
-
+            // checks if it is player 1's turn (player one is always X). If it is, it saves the info on where he clicks and after that playerOneTurn is set to false. 
             else if (playerOneTurn)
             {
                 if ((mouseCurrent.X > 100) && (mouseCurrent.X < 300) && (mouseCurrent.Y > 70) && (mouseCurrent.Y < 170) && oneOne == false)
                 {
-
-                    drawWhere = 11;
                     oneOne = true;
                     oneOneX = true;
-                    //DrawX(100, 70,300, 170);
                     playerOneTurn = false;
                     playeOneClicked = true;
 
                 }
                 else if ((mouseCurrent.X > 300) && (mouseCurrent.X < 500) && (mouseCurrent.Y > 70) && (mouseCurrent.Y < 170) && oneTwo == false)
                 {
-                    drawWhere = 12;
                     oneTwo = true;
                     oneTwoX = true;
-                    DrawX(300, 70,500, 170);
                     playerOneTurn = false;
                     playeOneClicked = true;
 
                 }
                 else if ((mouseCurrent.X > 500) && (mouseCurrent.X < 700) && (mouseCurrent.Y > 70) && (mouseCurrent.Y < 170) && oneThree == false)
                 {
-                    drawWhere = 13;
                     oneThree = true;
                     oneThreeX = true;
-                    DrawX(500, 70, 700, 170);
                     playerOneTurn = false;
                     playeOneClicked = true;
                 }
                 else if ((mouseCurrent.X > 100) && (mouseCurrent.X < 300) && (mouseCurrent.Y > 170) && (mouseCurrent.Y < 270) && twoOne == false)
                 {
-                    drawWhere = 21;
                     twoOne = true;
                     twoOneX = true;
-                    DrawX(100, 170, 300, 270);
                     playerOneTurn = false;
                     playeOneClicked = true;
 
                 }
                 else if ((mouseCurrent.X > 300) && (mouseCurrent.X < 500) && (mouseCurrent.Y > 170) && (mouseCurrent.Y < 270) && twoTwo == false)
                 {
-                    drawWhere = 22;
                     twoTwo = true;
                     twoTwoX = true;
-                    DrawX(300, 170, 500, 270);
                     playerOneTurn = false;
                     playeOneClicked = true;
                 }
                 else if ((mouseCurrent.X > 500) && (mouseCurrent.X < 700) && (mouseCurrent.Y > 170) && (mouseCurrent.Y < 270) && twoThree == false)
                 {
-                    drawWhere = 23;
                     twoThree = true;
                     twoThreeX = true;
-                    DrawX(500, 170, 700, 270);
                     playerOneTurn = false;
                     playeOneClicked = true;
                 }
                 else if ((mouseCurrent.X > 100) && (mouseCurrent.X < 300) && (mouseCurrent.Y > 270) && (mouseCurrent.Y < 370) && threeOne == false)
                 {
-                    drawWhere = 31;
                     threeOne = true;
                     threeOneX = true;
-                    DrawX(100, 270, 300, 370);
                     playerOneTurn = false;
                     playeOneClicked = true;
                 }
                 else if ((mouseCurrent.X > 300) && (mouseCurrent.X < 500) && (mouseCurrent.Y > 270) && (mouseCurrent.Y < 370) && threeTwo == false)
                 {
-                    drawWhere = 32;
                     threeTwo = true;
                     threeTwoX = true;
-                    DrawX(300, 270, 500, 370);
                     playerOneTurn = false;
                     playeOneClicked = true;
                 }
               
                 else if ((mouseCurrent.X > 500) && (mouseCurrent.X < 700) && (mouseCurrent.Y > 270) && (mouseCurrent.Y < 370) && threeThree == false)
                 {
-                    drawWhere = 33;
                     threeThree = true;
                     threeThreeX = true;
-                    DrawX(500, 270, 700, 370);
                     playerOneTurn = false;
                     playeOneClicked = true;
                 }
@@ -346,82 +223,64 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                 {
                     if ((mouseCurrent.X > 100) && (mouseCurrent.X < 300) && (mouseCurrent.Y > 70) && (mouseCurrent.Y < 170) && oneOne == false)
                     {
-                        drawWhere = 11;
                         oneOne = true;
                         oneOneO = true;
-                        DrawEllipse(150, 70);
                         playerOneTurn = true;
                         playerTwoClicked = true;
                     }
                     else if ((mouseCurrent.X > 300) && (mouseCurrent.X < 500) && (mouseCurrent.Y > 70) && (mouseCurrent.Y < 170) && oneTwo == false)
                     {
-                        drawWhere = 12;
                         oneTwo = true;
                         oneTwoO = true;
-                        DrawEllipse(350, 70);
                         playerOneTurn = true;
                         playerTwoClicked = true;
                     }
                     else if ((mouseCurrent.X > 500) && (mouseCurrent.X < 700) && (mouseCurrent.Y > 70) && (mouseCurrent.Y < 170) && oneThree == false)
                     {
-                        drawWhere = 13;
                         oneThree = true;
                         oneThreeO = true;
-                        DrawEllipse(550, 70);
                         playerOneTurn = true;
                         playerTwoClicked = true;
                     }
                     else if ((mouseCurrent.X > 100) && (mouseCurrent.X < 300) && (mouseCurrent.Y > 170) && (mouseCurrent.Y < 270) && twoOne == false)
                     {
-                        drawWhere = 21;
                         twoOne = true;
                         twoOneO = true;
-                        DrawEllipse(150, 170);
                         playerOneTurn = true;
                         playerTwoClicked = true;
                     }
                     else if ((mouseCurrent.X > 300) && (mouseCurrent.X < 500) && (mouseCurrent.Y > 170) && (mouseCurrent.Y < 270) && twoTwo == false)
                     {
-                        drawWhere = 22;
                         twoTwo = true;
                         twoTwoO = true;
-                        DrawEllipse(350, 170);
                         playerOneTurn = true;
                         playerTwoClicked = true;
                     }
                     else if ((mouseCurrent.X > 500) && (mouseCurrent.X < 700) && (mouseCurrent.Y > 170) && (mouseCurrent.Y < 270) && twoThree == false)
                     {
-                        drawWhere = 23;
                         twoThree = true;
                         twoThreeO = true;
-                        DrawEllipse(550, 170);
                         playerOneTurn = true;
                         playerTwoClicked = true;
                     }
                     else if ((mouseCurrent.X > 100) && (mouseCurrent.X < 300) && (mouseCurrent.Y > 270) && (mouseCurrent.Y < 370) && threeOne == false)
                     {
-                        drawWhere = 31;
                         threeOne = true;
                         threeOneO = true;
-                        DrawEllipse(150, 270);
                         playerOneTurn = true;
                         playerTwoClicked = true;
                     }
                     else if ((mouseCurrent.X > 300) && (mouseCurrent.X < 500) && (mouseCurrent.Y > 270) && (mouseCurrent.Y < 370) && threeTwo == false)
                     {
-                        drawWhere = 32;
                         threeTwo = true;
-                        threeTwoO = true;
-                        DrawEllipse(350, 270);
+                        threeTwoO = true;                     
                         playerOneTurn = true;
                         playerTwoClicked = true;
                     }
                     else if ((mouseCurrent.X > 500) && (mouseCurrent.X < 700) && (mouseCurrent.Y > 270) && (mouseCurrent.Y < 370) && threeThree == false)
                     {
-                        drawWhere = 33;
                         threeThree = true;
-                        threeThreeO = true;
-                        DrawEllipse(550, 270);
+                        threeThreeO = true;     
                         playerOneTurn = true;
                         playerTwoClicked = true;
                     }
@@ -436,6 +295,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
         private void SaveChanges()
         {
             //voin tallennella totalplayedit tässä kans kunhan esittelen.
+
             string savePath = MainForm.savePathPlayerInfo;
          var existingPlayers = GameScores.DeserializeList(savePath);
             for (int i = 0; i < existingPlayers.Count; i++)
@@ -451,7 +311,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
             }
             GameScores.Serialize(existingPlayers, savePath);
         }
-
+        /*
         private void AIDraw()
         {
            
@@ -496,7 +356,8 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                 }
             
         }
-        //this should produce a random spot on the gameboard where to draw AI's mark, if its taken ,it rolls new random and tries again. this only happens atm when player clicks the gameboard tho, and seems like X always wins for some reason. NEEDS FIXING
+        */
+        //produces random numer between 1 and 9, which will trigger a case for drawing to one of the 9 available areas in game, unless that spot has been taken, if so, loops back and tries again, untill it hits an open spot.
         private void AIGamePlay()
         {
             Random rnd = new Random();
@@ -510,7 +371,6 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                     case 1:
                         if (!oneOne)
                         {
-                            drawWhere = 11;
                             oneOne = true;
                             oneOneO = true;
                             playerOneTurn = true;
@@ -523,7 +383,6 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                     case 2:
                         if (!oneTwo)
                         {
-                            drawWhere = 12;
                             oneTwo = true;
                             oneTwoO = true;
                             playerOneTurn = true;
@@ -536,9 +395,8 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                     case 3:
                         if (!oneThree)
                         {
-                            drawWhere = 13;
-                            oneTwo = true;
-                            oneTwoO = true;
+                            oneThree = true;
+                            oneThreeO = true;
                             playerOneTurn = true;
                             markDrawed = true;
                             break;
@@ -549,9 +407,8 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                     case 4:
                         if (!twoOne)
                         {
-                            drawWhere = 21;
-                            oneTwo = true;
-                            oneTwoO = true;
+                            twoOne = true;
+                            twoOneO = true;
                             playerOneTurn = true;
                             markDrawed = true;
                             break;
@@ -562,9 +419,8 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                     case 5:
                         if (!twoTwo)
                         {
-                            drawWhere = 22;
-                            oneTwo = true;
-                            oneTwoO = true;
+                           twoTwo = true;
+                            twoTwoO= true;
                             playerOneTurn = true;
                             markDrawed = true;
                             break;
@@ -575,9 +431,8 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                     case 6:
                         if (!twoThree)
                         {
-                            drawWhere = 23;
-                            oneTwo = true;
-                            oneTwoO = true;
+                            twoThree = true;
+                            twoThreeO = true;
                             playerOneTurn = true;
                             markDrawed = true;
                             break;
@@ -588,9 +443,8 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                     case 7:
                         if (!threeOne)
                         {
-                            drawWhere = 31;
-                            oneTwo = true;
-                            oneTwoO = true;
+                            threeOne = true;
+                            threeOneO = true;
                             playerOneTurn = true;
                             markDrawed = true;
                             break;
@@ -601,9 +455,8 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                     case 8:
                         if (!threeTwo)
                         {
-                            drawWhere = 32;
-                            oneTwo = true;
-                            oneTwoO = true;
+                            threeTwo = true;
+                            threeTwoO = true;
                             playerOneTurn = true;
                             markDrawed = true;
                             break;
@@ -614,9 +467,8 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                     case 9:
                         if (!threeThree)
                         {
-                            drawWhere = 33;
-                            oneTwo = true;
-                            oneTwoO = true;
+                            threeThree = true;
+                            threeThreeO = true;
                             playerOneTurn = true;
                             markDrawed = true;
 
@@ -630,8 +482,10 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                 
             } while (wasTaken || !markDrawed );
             wasTaken = false;
-            //this.invalidate tähän,siirrä paint-eventtiin nuo piirrot kuten esimerkkinä 1kpl  X piirto on jo.
-            AIDraw();
+            //force repainting
+            this.Invalidate();
+          
+           // AIDraw();
         }
 
             private void DrawForm_Load(object sender, EventArgs e)
@@ -642,18 +496,9 @@ namespace OHJ_II_HarjotustehtäväRistinolla
 
             private void DrawForm_Paint(object sender, PaintEventArgs e)
             {
-            //is this the only place where this works? how about when it draws over already drawn X / O marks? why does it draw over when either player wins? 
             DrawgameField();
-            //lisää loput ja pistä omaan funktioon.
-            if (oneOneX)
-            {
-                DrawX(100, 70, 300, 170);
+            DrawMarks();
             }
-            if (oneTwoX)
-            {
-                DrawX(300, 70, 500, 170);
-            }
-        }
 
         //for drawing O mark in inputted coordinates
             private void DrawEllipse(int x, int y)
@@ -680,6 +525,84 @@ namespace OHJ_II_HarjotustehtäväRistinolla
 
 
             }
+        //draw marks X and O, if CheckPlayStuff() has marked an area for a mark, used in Paint-event
+        private void DrawMarks()
+        {
+            if (oneOneX)
+            {
+                DrawX(100, 70, 300, 170);
+            }
+           if (oneTwoX)
+            {
+                DrawX(300, 70, 500, 170);
+            }
+            if (oneThreeX)
+            {
+                DrawX(500, 70, 700, 170);
+            }
+            if (twoOneX)
+            {
+                DrawX(100, 170, 300, 270);
+            }
+             if (twoTwoX)
+            {
+                DrawX(300, 170, 500, 270);
+            }
+          if (twoThreeX)
+            {
+                DrawX(500, 170, 700, 270);
+            }
+            if (threeOneX)
+            {
+                DrawX(100, 270, 300, 370);
+            }
+             if (threeTwoX)
+            {
+                DrawX(300, 270, 500, 370);
+            }
+            if (threeThreeX)
+            {
+                DrawX(500, 270, 700, 370);
+            }
+
+            if (oneOneO)
+            {
+                DrawEllipse(150, 70);
+            }
+            if (oneTwoO)
+            {
+                DrawEllipse(350, 70);
+            }
+           if (oneThreeO)
+            {
+                DrawEllipse(550, 70);
+            }
+            if (twoOneO)
+            {
+                DrawEllipse(150, 170);
+            }
+            if (twoTwoO)
+            {
+                DrawEllipse(350, 170);
+            }
+           if (twoThreeO)
+            {
+                DrawEllipse(550, 170);
+            }
+            if (threeOneO)
+            {
+                DrawEllipse(150, 270);
+            }
+           if (threeTwoO)
+            {
+                DrawEllipse(350, 270);
+            }
+            if (threeThreeO)
+            {
+                DrawEllipse(550, 270);
+            }
+        }
+
         //draws the gameboard.
             private void DrawgameField()
             {

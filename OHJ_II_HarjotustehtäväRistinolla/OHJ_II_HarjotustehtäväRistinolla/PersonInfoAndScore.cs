@@ -35,7 +35,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
             public Person personScores;
 
             public float wins, losses, draws;
-            public float totalGamePlayDuration;
+            public TimeSpan totalGamePlayDuration;
 
             public static void Serialize(List<GameScores> listOfPlayers, string savePath)
             {
