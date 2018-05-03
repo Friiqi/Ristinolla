@@ -29,6 +29,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
 
         public void btnCreateNewPlayer_Click(object sender, EventArgs e)
         {
+            
             NewPlayerForm newPlayer = new NewPlayerForm();
             if (newPlayer.ShowDialog() == DialogResult.OK)
             {
@@ -79,16 +80,31 @@ namespace OHJ_II_HarjotustehtäväRistinolla
 
         private void btnStartGame_Click(object sender, EventArgs e)
         {
-            if (!playerOne.HasValue || !playerTwo.HasValue && (!playerOne.Equals(playerTwo)))
+            if (!playerOne.HasValue || !playerTwo.HasValue || playerTwo.Equals(playerOne))
             {
-                MessageBox.Show("Valitse pelaajat!");
-                return;
+                if (playerTwo.Equals(playerOne))
+                {
+                    MessageBox.Show("Pelaaja 1 ei voi olla sama kuin pelaaja 2");
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("Valitse pelaajat!");
+                    return;
+                }
+                
+             
             }
             this.Close();
             DrawForm newDraw = new DrawForm();
             newDraw.playerOne = this.playerOne.Value;
             newDraw.playerTwo = this.playerTwo.Value;
             newDraw.Show();
+        }
+
+        private void btnMainClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

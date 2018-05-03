@@ -66,13 +66,13 @@ namespace OHJ_II_HarjotustehtäväRistinolla
         }
         public void DrawForm_MouseClick(object sender, MouseEventArgs e)
         {
+            //makes sure coordinates for clicking check refer to drawForm window, so if window is moved it wont break the coordinate-dependant click checks.
             Point mouseCurrent = PointToClient(Cursor.Position);
 
             CheckPlayStuff(mouseCurrent);
         }
 
 
-        // checks if either player has drawn a mark on the clicked rectangle area, if not, draws the mark of the currently active player.
         public void ActivePlayerName()
         {
             if (playerOneTurn)
@@ -88,14 +88,10 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                 lblActivePlayerName.Text = "Computer";
             }
         }
+        //checks where clicking happens and saves that info, prevents already marked areas to be chosen for marking. All players-related functions happen mostly here (turn checks, click checks, AI movement start, 1st and 2nd player clicks.
         public void CheckPlayStuff(Point mouseCurrent)
         {
-            
-
-            //checks if X has won
-
-
-            // checks if it is player 1's turn (player one is always X). If it is, it saves the info on where he clicks and after that playerOneTurn is set to false. 
+              // checks if it is player 1's turn (player one is always X). after that playerOneTurn is set to false. 
             if (playerOneTurn)
             {
                 if ((mouseCurrent.X > 100) && (mouseCurrent.X < 300) && (mouseCurrent.Y > 70) && (mouseCurrent.Y < 170) && oneOne == false)
@@ -160,7 +156,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                 {
                     MessageBox.Show("did not fall into any mouseclick check for drawing X.");
                 }
-                //second player is an AI. 
+                //second player is an AI, starts timer tick, where AI does its move.
                 this.Invalidate();
                 if (computerplayer)
                 {
@@ -174,7 +170,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                 }
 
             }
-            // PlayerOneTurn is false, thus next drawing is a circle, after that, PlayerOneTurn is set to true.
+            // PlayerOneTurn is false, thus next drawing is a circle (2nd player), after that, PlayerOneTurn is set to true.
             else if (!playerOneTurn)
             {
                 //second player is not an AI
@@ -239,12 +235,13 @@ namespace OHJ_II_HarjotustehtäväRistinolla
 
             }
             //forces paint-event to happen.
-            
+            this.Invalidate();
         }
+        //conditions for winning and draw are checked by this, also adds to wins/losses/gameplaytime
         //saves computerplayerinfo twofold for same reason its gives 2x the win message
         private bool CheckForWinner(bool showWinner)
         {
-            string winner = "Draw!";
+            string winner = "";
             bool someoneWon = false;
             if ((oneOneX && oneTwoX && oneThreeX) || (oneOneX && twoTwoX && threeThreeX) || (twoOneX && twoTwoX && twoThreeX) || (threeOneX && threeTwoX && threeThreeX) || (oneThreeX && twoTwoX && threeOneX) || (oneOneX && twoOneX && threeOneX)
                 || (oneTwoX && twoTwoX && threeTwoX) || (oneThreeX && twoThreeX && threeThreeX))
@@ -259,8 +256,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                 //  string format = "HH:mm:ss";
                 SaveChanges();
                 someoneWon = true;
-                winner = "X won!";
-                //MessageBox.Show("X won!");
+                winner = "X voitti!";
 
             }
             //checks if O has won
@@ -277,11 +273,9 @@ namespace OHJ_II_HarjotustehtäväRistinolla
                 playerTwo.totalGamePlayDuration = playerTwo.totalGamePlayDuration + duration;
                 SaveChanges();
                 someoneWon = true;
-                winner = "O won!";
-                //MessageBox.Show("O won!");
-
+                winner = "O voitti!";               
             }
-            //checks if all areas are marked, thus game ending in draw
+            //checks if all areas are marked, but last mark did not make either player win, thus game ending in draw
             else if ((oneOne && oneTwo && oneThree && twoOne && twoTwo & twoThree && threeOne && threeTwo & threeThree) && !someoneWon)
             {
                 playerOne.draws++;
@@ -294,19 +288,21 @@ namespace OHJ_II_HarjotustehtäväRistinolla
               
                 SaveChanges();
                 someoneWon = true;
-                //MessageBox.Show("Draw!");
+                winner = "Tasapeli!";
             }
 
             if (showWinner && someoneWon)
             {
                 MessageBox.Show(winner);
+                this.Close();
+             
             }
             return someoneWon;
         }
+
+        //saves both players info to file
         private void SaveChanges()
         {
-            //voin tallennella totalplayedit tässä kans kunhan esittelen.
-
             string savePath = MainForm.savePathPlayerInfo;
             
             var existingPlayers = GameScores.DeserializeList(savePath);
@@ -332,52 +328,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
             }
             
         }
-        /*
-        private void AIDraw()
-        {
-           
-                switch (drawWhere)
-                {
-                    case 11:
-                        DrawEllipse(150, 70);
-                        drawWhere = 0;
-                        break;
-                    case 12:
-                        DrawEllipse(350, 70);
-                        drawWhere = 0;
-                        break;
-                    case 13:
-                        DrawEllipse(550, 70);
-                        drawWhere = 0;
-                        break;
-                    case 21:
-                        DrawEllipse(150, 170);
-                        drawWhere = 0;
-                        break;
-                    case 22:
-                        DrawEllipse(350, 170);
-                        drawWhere = 0;
-                        break;
-                    case 23:
-                        DrawEllipse(550, 170);
-                        drawWhere = 0;
-                        break;
-                    case 31:
-                        DrawEllipse(150, 270);
-                        drawWhere = 0;
-                        break;
-                    case 32:
-                        DrawEllipse(350, 270);
-                        drawWhere = 0;
-                        break;
-                    case 33:
-                        DrawEllipse(550, 270);
-                        drawWhere = 0;
-                        break;
-                }
-            
-        }
-        */
+      
         //produces random numer between 1 and 9, which will trigger a case for drawing to one of the 9 available areas in game, unless that spot has been taken, if so, loops back and tries again, untill it hits an open spot.
         private void AIGamePlay()
         {
@@ -497,9 +448,18 @@ namespace OHJ_II_HarjotustehtäväRistinolla
 
         private void DrawForm_Load(object sender, EventArgs e)
         {
-            lblPlayer1FullName.Text = playerOne.personScores.Displayname;
-            lblPlayer2FullName.Text = playerTwo.personScores.Displayname;
             lblActivePlayerName.Text = playerOne.personScores.firstName;
+            lblPlayer1FullName.Text = playerOne.personScores.Displayname;
+            lblPlayer1TotalDraws.Text = playerOne.draws.ToString();
+           
+            lblPlayer1TotalWins.Text = playerOne.wins.ToString();
+            lblPlayer1TotalLosses.Text = playerOne.losses.ToString();
+            lblPlayer2TotalLosses.Text = playerTwo.losses.ToString();
+            lblPlayer2TotalDraws.Text = playerTwo.draws.ToString();
+            lblPlayer2FullName.Text = playerTwo.personScores.Displayname;
+            
+            lblPlayer2TotalWins.Text = playerTwo.wins.ToString();
+
         }
 
         private void DrawForm_Paint(object sender, PaintEventArgs e)
@@ -507,7 +467,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
             ActivePlayerName();
             DrawgameField();
             DrawMarks();
-            //herra ope ei keksinyt ratkaisua, elä anna miinuspisteitä tupla woittotekstille :D
+            //(herra ope ei keksinyt ratkaisua, elä anna miinuspisteitä tupla woittotekstille :D)
             if (!hasGameEnded)
             {
                 hasGameEnded = CheckForWinner(true);
@@ -517,7 +477,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
 
         }
 
-        //for drawing O mark in inputted coordinates
+        //for drawing O mark at inputted coordinates
         private void DrawEllipse(int x, int y)
         {
             Graphics drawEllipse;
@@ -542,7 +502,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
 
 
         }
-        //draw marks X and O, if CheckPlayStuff() has marked an area for a mark, used in Paint-event
+        //draw marks X and O, if CheckPlayStuff() tells us the clicked area is unmarked by either player, used in Paint-event
         private void DrawMarks()
         {
             if (oneOneX)
@@ -640,6 +600,27 @@ namespace OHJ_II_HarjotustehtäväRistinolla
             blackPen.Dispose();
 
             formGraphics.Dispose();
+        }
+
+        private void lblPlayer2TotalDraws_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            DialogResult result =  MessageBox.Show("Haluatko poistua?", "Jos poistut kesken pelin, tietoja ei tallenneta! ",  MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                this.Close();
+            }
+            
+        }
+
+        private void DrawForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            MainForm main = new MainForm();
+            main.Show();
         }
 
         private void AINeedsToThink2_Tick(object sender, EventArgs e)

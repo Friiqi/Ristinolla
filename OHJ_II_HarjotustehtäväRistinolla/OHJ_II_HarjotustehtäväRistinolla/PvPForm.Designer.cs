@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.btnReturnToMainForm = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.btnStartGame = new System.Windows.Forms.Button();
             this.lblChooseExsitingPlayerInPvE = new System.Windows.Forms.Label();
             this.lblPvPFormCreateNewPlayer = new System.Windows.Forms.Label();
@@ -39,26 +38,18 @@
             this.lstbPlayerList2 = new System.Windows.Forms.ListBox();
             this.lblExistingPlayer1 = new System.Windows.Forms.Label();
             this.lblExistingPlayer2 = new System.Windows.Forms.Label();
+            this.btnClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnReturnToMainForm
             // 
-            this.btnReturnToMainForm.Location = new System.Drawing.Point(116, 205);
+            this.btnReturnToMainForm.Location = new System.Drawing.Point(117, 205);
             this.btnReturnToMainForm.Name = "btnReturnToMainForm";
             this.btnReturnToMainForm.Size = new System.Drawing.Size(70, 23);
             this.btnReturnToMainForm.TabIndex = 15;
             this.btnReturnToMainForm.Text = "Alkuun";
             this.btnReturnToMainForm.UseVisualStyleBackColor = true;
             this.btnReturnToMainForm.Click += new System.EventHandler(this.btnReturnToMainForm_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(178, 214);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(8, 8);
-            this.button2.TabIndex = 14;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
             // 
             // btnStartGame
             // 
@@ -143,17 +134,27 @@
             this.lblExistingPlayer2.TabIndex = 21;
             this.lblExistingPlayer2.Text = "Pelaaja 2";
             // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(216, 207);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.TabIndex = 22;
+            this.btnClose.Text = "Sulje";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnMainClose_Click);
+            // 
             // PvPForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblExistingPlayer2);
             this.Controls.Add(this.lblExistingPlayer1);
             this.Controls.Add(this.lstbPlayerList2);
             this.Controls.Add(this.lstbPlayerList);
             this.Controls.Add(this.btnReturnToMainForm);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.btnStartGame);
             this.Controls.Add(this.lblChooseExsitingPlayerInPvE);
             this.Controls.Add(this.lblPvPFormCreateNewPlayer);
@@ -169,7 +170,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnReturnToMainForm;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnStartGame;
         private System.Windows.Forms.Label lblChooseExsitingPlayerInPvE;
         private System.Windows.Forms.Label lblPvPFormCreateNewPlayer;
@@ -179,5 +179,6 @@
         private System.Windows.Forms.ListBox lstbPlayerList2;
         private System.Windows.Forms.Label lblExistingPlayer1;
         private System.Windows.Forms.Label lblExistingPlayer2;
+        private System.Windows.Forms.Button btnClose;
     }
 }

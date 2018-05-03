@@ -44,5 +44,10 @@ namespace OHJ_II_HarjotustehtäväRistinolla
         {
 
         }
+
+        private void btnMainClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

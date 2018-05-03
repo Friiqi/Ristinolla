@@ -32,6 +32,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnMainFormChosePlayer = new System.Windows.Forms.Button();
             this.btnMainFormChoseComputer = new System.Windows.Forms.Button();
+            this.btnMainClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -54,7 +55,7 @@
             // 
             // btnMainFormChosePlayer
             // 
-            this.btnMainFormChosePlayer.Location = new System.Drawing.Point(55, 94);
+            this.btnMainFormChosePlayer.Location = new System.Drawing.Point(32, 94);
             this.btnMainFormChosePlayer.Name = "btnMainFormChosePlayer";
             this.btnMainFormChosePlayer.Size = new System.Drawing.Size(75, 23);
             this.btnMainFormChosePlayer.TabIndex = 2;
@@ -64,7 +65,7 @@
             // 
             // btnMainFormChoseComputer
             // 
-            this.btnMainFormChoseComputer.Location = new System.Drawing.Point(150, 94);
+            this.btnMainFormChoseComputer.Location = new System.Drawing.Point(119, 94);
             this.btnMainFormChoseComputer.Name = "btnMainFormChoseComputer";
             this.btnMainFormChoseComputer.Size = new System.Drawing.Size(75, 23);
             this.btnMainFormChoseComputer.TabIndex = 3;
@@ -72,11 +73,22 @@
             this.btnMainFormChoseComputer.UseVisualStyleBackColor = true;
             this.btnMainFormChoseComputer.Click += new System.EventHandler(this.btnMainFormChoseComputer_Click);
             // 
+            // btnMainClose
+            // 
+            this.btnMainClose.Location = new System.Drawing.Point(206, 94);
+            this.btnMainClose.Name = "btnMainClose";
+            this.btnMainClose.Size = new System.Drawing.Size(75, 23);
+            this.btnMainClose.TabIndex = 4;
+            this.btnMainClose.Text = "Sulje";
+            this.btnMainClose.UseVisualStyleBackColor = true;
+            this.btnMainClose.Click += new System.EventHandler(this.btnMainClose_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(305, 155);
+            this.Controls.Add(this.btnMainClose);
             this.Controls.Add(this.btnMainFormChoseComputer);
             this.Controls.Add(this.btnMainFormChosePlayer);
             this.Controls.Add(this.label2);
@@ -95,6 +107,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnMainFormChosePlayer;
         private System.Windows.Forms.Button btnMainFormChoseComputer;
+        private System.Windows.Forms.Button btnMainClose;
     }
 }
 

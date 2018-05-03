@@ -83,7 +83,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
             newDraw.playerTwo = playerTwo.Value;
             
             newDraw.Show();
-            this.Close();
+            this.Hide();
 
         }
         private void PopulatePlayerSelection()
@@ -102,6 +102,21 @@ namespace OHJ_II_HarjotustehtäväRistinolla
         private void PvEForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnCreateNerPlayer_Click(object sender, EventArgs e)
+        {
+
+            NewPlayerForm newPlayer = new NewPlayerForm();
+            if (newPlayer.ShowDialog() == DialogResult.OK)
+            {
+                PopulatePlayerSelection();
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

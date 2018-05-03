@@ -33,7 +33,6 @@
             this.lblNewPlayerDateOfBirth = new System.Windows.Forms.Label();
             this.btnNewPlayerEmpty = new System.Windows.Forms.Button();
             this.btnNewPlayerSaveInfo = new System.Windows.Forms.Button();
-            this.btnNewPlayerReturnToMainForm = new System.Windows.Forms.Button();
             this.txtNewPlayerFirstName = new System.Windows.Forms.TextBox();
             this.txtNewPlayerLastName = new System.Windows.Forms.TextBox();
             this.dtpickNewPlayerDateOfBirth = new System.Windows.Forms.DateTimePicker();
@@ -87,16 +86,6 @@
             this.btnNewPlayerSaveInfo.UseVisualStyleBackColor = true;
             this.btnNewPlayerSaveInfo.Click += new System.EventHandler(this.btnNewPlayerSaveInfo_Click);
             // 
-            // btnNewPlayerReturnToMainForm
-            // 
-            this.btnNewPlayerReturnToMainForm.Location = new System.Drawing.Point(409, 210);
-            this.btnNewPlayerReturnToMainForm.Name = "btnNewPlayerReturnToMainForm";
-            this.btnNewPlayerReturnToMainForm.Size = new System.Drawing.Size(98, 23);
-            this.btnNewPlayerReturnToMainForm.TabIndex = 6;
-            this.btnNewPlayerReturnToMainForm.Text = "Alkuvalikkoon";
-            this.btnNewPlayerReturnToMainForm.UseVisualStyleBackColor = true;
-            this.btnNewPlayerReturnToMainForm.Click += new System.EventHandler(this.btnNewPlayerReturnToMainForm_Click);
-            // 
             // txtNewPlayerFirstName
             // 
             this.txtNewPlayerFirstName.Location = new System.Drawing.Point(32, 102);
@@ -120,7 +109,7 @@
             // 
             // btnBackFromNewPlayerForm
             // 
-            this.btnBackFromNewPlayerForm.Location = new System.Drawing.Point(292, 210);
+            this.btnBackFromNewPlayerForm.Location = new System.Drawing.Point(409, 210);
             this.btnBackFromNewPlayerForm.Name = "btnBackFromNewPlayerForm";
             this.btnBackFromNewPlayerForm.Size = new System.Drawing.Size(98, 23);
             this.btnBackFromNewPlayerForm.TabIndex = 11;
@@ -137,7 +126,6 @@
             this.Controls.Add(this.dtpickNewPlayerDateOfBirth);
             this.Controls.Add(this.txtNewPlayerLastName);
             this.Controls.Add(this.txtNewPlayerFirstName);
-            this.Controls.Add(this.btnNewPlayerReturnToMainForm);
             this.Controls.Add(this.btnNewPlayerSaveInfo);
             this.Controls.Add(this.btnNewPlayerEmpty);
             this.Controls.Add(this.lblNewPlayerDateOfBirth);
@@ -156,7 +144,6 @@
         private System.Windows.Forms.Label lblNewPlayerDateOfBirth;
         private System.Windows.Forms.Button btnNewPlayerEmpty;
         private System.Windows.Forms.Button btnNewPlayerSaveInfo;
-        private System.Windows.Forms.Button btnNewPlayerReturnToMainForm;
         private System.Windows.Forms.TextBox txtNewPlayerFirstName;
         private System.Windows.Forms.TextBox txtNewPlayerLastName;
         private System.Windows.Forms.DateTimePicker dtpickNewPlayerDateOfBirth;

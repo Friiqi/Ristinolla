@@ -34,8 +34,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblChooseExsitingPlayerInPvE = new System.Windows.Forms.Label();
             this.btnStartGame = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.btnReturnToMainForm = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -64,6 +64,7 @@
             this.btnCreateNerPlayer.TabIndex = 2;
             this.btnCreateNerPlayer.Text = "Uusi";
             this.btnCreateNerPlayer.UseVisualStyleBackColor = true;
+            this.btnCreateNerPlayer.Click += new System.EventHandler(this.btnCreateNerPlayer_Click);
             // 
             // label2
             // 
@@ -93,18 +94,9 @@
             this.btnStartGame.UseVisualStyleBackColor = true;
             this.btnStartGame.Click += new System.EventHandler(this.btnStartGame_Click);
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(197, 205);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(8, 8);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // btnReturnToMainForm
             // 
-            this.btnReturnToMainForm.Location = new System.Drawing.Point(135, 196);
+            this.btnReturnToMainForm.Location = new System.Drawing.Point(133, 196);
             this.btnReturnToMainForm.Name = "btnReturnToMainForm";
             this.btnReturnToMainForm.Size = new System.Drawing.Size(70, 23);
             this.btnReturnToMainForm.TabIndex = 7;
@@ -112,13 +104,23 @@
             this.btnReturnToMainForm.UseVisualStyleBackColor = true;
             this.btnReturnToMainForm.Click += new System.EventHandler(this.btnReturnToMainForm_Click);
             // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(229, 198);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.TabIndex = 8;
+            this.btnClose.Text = "Sulje";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // PvEForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnReturnToMainForm);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.btnStartGame);
             this.Controls.Add(this.lblChooseExsitingPlayerInPvE);
             this.Controls.Add(this.label2);
@@ -141,7 +143,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblChooseExsitingPlayerInPvE;
         private System.Windows.Forms.Button btnStartGame;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnReturnToMainForm;
+        private System.Windows.Forms.Button btnClose;
     }
 }

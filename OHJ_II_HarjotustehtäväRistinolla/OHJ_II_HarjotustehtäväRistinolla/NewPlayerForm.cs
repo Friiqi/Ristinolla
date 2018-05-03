@@ -29,7 +29,8 @@ namespace OHJ_II_HarjotustehtäväRistinolla
         private void btnNewPlayerReturnToMainForm_Click(object sender, EventArgs e)
         {
 
-            Close();
+            this.Close();
+            
             MainForm openMain = new MainForm();
             openMain.Show();
         }
@@ -47,7 +48,7 @@ namespace OHJ_II_HarjotustehtäväRistinolla
             txtNewPlayerFirstName.Text = string.Empty;
             txtNewPlayerLastName.Text = string.Empty;
             dtpickNewPlayerDateOfBirth.ResetText();
-   
+            
         }
 
         public void btnNewPlayerSaveInfo_Click(object sender, EventArgs e)
